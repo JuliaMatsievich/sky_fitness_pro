@@ -1,0 +1,18 @@
+.header {
+	display: flex;
+	justify-content: space-between;
+	margin-left: 140px;
+	margin-right: 140px;
+	margin-bottom: 75px;
+	margin-top: 30px;
+}
+
+.header_warpper {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 8px;
+}
+.header_logo {
+
+}
