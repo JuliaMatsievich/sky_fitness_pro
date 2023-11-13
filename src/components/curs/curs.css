@@ -1,0 +1,158 @@
+.curs_header {
+	margin-top: 75px;
+	height: 310px;
+	border-radius: 30px;
+	background: rgba(205, 205, 205, 0.1);
+	backdrop-filter: blur(14.51865291595459px);
+	padding: 30px 0px 0px 30px;
+	background-image: url(../../../public/img/skill-yoga.png);
+}
+.curs_title {
+	width: 528px;
+	font-size: 64px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 72px; /* 112.5% */
+	letter-spacing: -0.8px;
+}
+.curs_image {
+}
+
+.foryou {
+	margin-top: 75px;
+}
+
+.foryou_title {
+	font-variant-numeric: lining-nums proportional-nums;
+	font-size: 40px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 48px; /* 120% */
+	margin-bottom: 40px;
+}
+
+.foryou_list {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+	gap: 87px;
+}
+
+.foryou_item {
+	display: flex;
+	justify-content: space-between;
+	gap: 24px;
+}
+
+.foryou-item {
+}
+
+.foryou-item_count {
+	color: #000;
+	min-width: 67px;
+	height: 67px;
+	/* outline: 1px solid red; */
+	text-align: center;
+	font-size: 32px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 125%;
+	border-radius: 50%;
+	background: #c7e957;
+	display: flex;
+
+	padding: 10.687px;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 13.359px;
+}
+
+.foryou-item_text {
+	color: #000;
+	max-width: 244px;
+	font-size: 24px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 133.333%;
+}
+
+.directions {
+	margin-top: 75px;
+}
+
+.directions_title {
+	color: #000;
+	font-size: 40px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 120%;
+	margin-bottom: 22px;
+}
+
+.directions_list {
+	columns: 422px;
+}
+
+.directions_item {
+	list-style-type: disc;
+	list-style-position: inside;
+	color: #000;
+	font-size: 24px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 133.333%;
+}
+
+.description {
+	margin-top: 75px;
+}
+
+.description_text {
+	color: #000;
+	font-size: 24px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 133.333%;
+}
+
+.description_text:not(:last-child) {
+	margin-bottom: 20px;
+}
+
+.signUpTrain {
+	height: 300px;
+	border-radius: 30px;
+	background: #f9ebff;
+	margin-top: 75px;
+	padding: 46px 52px;
+	margin-bottom: 159px;
+	background-image: url('../../../public/img/phone.png');
+	background-repeat: no-repeat;
+	background-position: 100%;
+}
+
+.signUpTrain_text {
+	color: #000;
+	font-size: 32px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 125%;
+	max-width: 823px;
+	margin-bottom: 34px;
+}
+
+.signUpTrain_btn {
+	border: none;
+	border-radius: 46px;
+	background: var(--palette-purple-90, #580ea2);
+	color: #fff;
+	font-size: 18px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 24px; /* 133.333% */
+	letter-spacing: -0.05px;
+	padding: 12px 24px 16px 24px;
+	cursor: pointer;
+
+}
