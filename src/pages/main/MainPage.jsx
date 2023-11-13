@@ -1,5 +1,6 @@
 import React from "react";
 import "./main.css";
+import { Card } from "../../components/card/Card";
 
 export const MainPage = () => {
   return (
@@ -23,30 +24,11 @@ export const MainPage = () => {
           </div>
 
           <div className="main__cards">
-            <div className="card">
-              <span>Йога</span>
-              <img className="img" src="img/yoga.svg" alt="" />
-            </div>
-
-            <div className="card">
-              <span>Танцевальный фитнес</span>
-              <img className="img" src="img/fitness.svg" alt="" />
-            </div>
-
-            <div className="card">
-              <span>Стретчинг</span>
-              <img className="img" src="img/stretching.svg" alt="" />
-            </div>
-
-            <div className="card">
-              <span>Степ-аэробика</span>
-              <img className="img" src="img/step.svg" alt="" />
-            </div>
-
-            <div className="card">
-              <span>Бодифлекс</span>
-              <img className="img" src="img/bodyflex.svg" alt="" />
-            </div>
+            <Card title={"Йога"} link={"img/yoga.svg"}/>
+            <Card title={"Танцевальный фитнес"} link={"img/fitness.svg"}/>
+            <Card title={"Стретчинг"} link={"img/stretching.svg"}/>
+            <Card title={"Степ-аэробика"} link={"img/step.svg"}/>
+            <Card title={"Бодифлекс"} link={"img/bodyflex.svg"}/>
 
             <div className="main__logo">
               <div className="main__logo_img">
