@@ -1,10 +1,12 @@
-import logo from './logo.svg';
 import './App.css';
+import { AppRoutes } from './routes';
+// import { MainPage } from './pages/main/MainPage';
 
 function App() {
   return (
     <div>
-      <p>SkyFitnessPro</p>
+      {/* <p>SkyFitnessPro</p> */}
+      <AppRoutes />
     </div>
   );
 }
