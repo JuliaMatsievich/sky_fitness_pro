@@ -1,10 +1,14 @@
-import React from 'react'
+import React from 'react';
 import './App.css';
+import { AppRoutes } from './routes';
+import { BrowserRouter } from 'react-router-dom';
+import { NewLogin } from './components/newLogin/newLogin';
 
 function App() {
   return (
-    <div>
-    </div>
+    <BrowserRouter>
+    <AppRoutes></AppRoutes>
+    </BrowserRouter>
   );
 }
 
