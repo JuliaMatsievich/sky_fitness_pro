@@ -1,3 +1,8 @@
+body {
+    /* background-color: #271a58; */
+    /* font-family: "StratosSkyeng", sans-serif; */
+}
+
 /* @font-face {
     font-family: "StratosSkyeng";
     src: local("StratosSkyeng"), local("StratosSkyeng"), url("/public/fonts/StratosSkyeng.woff2") format("woff2"), url("/public/fonts/StratosSkyeng.woff") format("woff");
@@ -10,22 +15,22 @@
     box-sizing: border-box;
 }
 
-html,
-body {
-    background-color: #271A58;
-    /* font-family: "StratosSkyeng", sans-serif; */
+.main__page {
+    /* margin-left: 140px;
+    margin-right: 140px; */
 }
 
-.main__page {
-    margin-left: 140px;
-    margin-right: 140px;
+.main__container-body {
+    background-color: #271a58;
+    width: 100%;
 }
 
 .header {
     display: flex;
     justify-content: space-between;
     margin-bottom: 35px;
-    margin-top: 30px;
+    margin-top: 0px;
+    padding-top: 30px;
 }
 
 .header_wrapper {
@@ -38,15 +43,15 @@ body {
 }
 
 .header-button {
-    border: #140D40;
+    border: #140d40;
     border-radius: 46px;
-    background: #140D40;
+    background: #140d40;
     display: inline-flex;
     padding: 5px 16px 7px 16px;
     justify-content: center;
     align-items: center;
     gap: 8px;
-    color: #FFF;
+    color: #fff;
     text-align: center;
     font-size: 16px;
     font-style: normal;
@@ -74,7 +79,7 @@ body {
 }
 
 .main__info span {
-    color: var(--monochrome-white-20, #FFF);
+    color: var(--monochrome-white-20, #fff);
     font-size: 20px;
     font-style: normal;
     font-weight: 400;
@@ -91,7 +96,7 @@ body {
 
 .main__title {
     margin-top: 17px;
-    color: #F4F4FF;
+    color: #f4f4ff;
     font-size: 60px;
     font-style: normal;
     font-weight: 400;
@@ -126,8 +131,8 @@ body {
     justify-content: center;
     align-items: center;
     border-radius: 46px;
-    background: #C7E957;
-    border: #C7E957;
+    background: #c7e957;
+    border: #c7e957;
     color: #000000;
     width: 147px;
     height: 48px;
@@ -138,5 +143,5 @@ body {
     font-size: 24px;
     font-style: normal;
     font-weight: 400;
-    cursor: pointer; 
+    cursor: pointer;
 }
