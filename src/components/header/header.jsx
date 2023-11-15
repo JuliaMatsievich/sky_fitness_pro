@@ -1,7 +1,11 @@
+import { useContext } from "react"
 import { MAIN_PAGE, PROFILE_PAGE } from "../../constants/pagesСonst"
 import "./header.css"
+import { UserContext } from "../../App"
 
 export const Header = ({namePage}) => {
+
+  const {isUser, setIsUser} = useContext(UserContext)
 
   return (
     <>
@@ -11,7 +15,7 @@ export const Header = ({namePage}) => {
           ? <img className="header__logo" src="./img/logo.svg" alt=""/>
           : <img className="header__logo" src="./img/logo-black.svg" alt=""/>
           }
-          {namePage === PROFILE_PAGE ?
+          {isUser ?
           <div className="header-profileInfo">
           <img className="header-photo" src="./img/photoProfile.svg" alt="" />
           <p className="header-p">Сергей</p>

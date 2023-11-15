@@ -5,6 +5,7 @@
     height: 480px;
     cursor: pointer;
     background-color: #F4F4FF;
+    transition: all 0.3s ease 0s;;
 }
 
 .card:hover {

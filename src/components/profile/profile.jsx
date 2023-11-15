@@ -93,6 +93,7 @@ export function Profile() {
           </div>
         </div>
       </footer>
+      
       {isShowLogin && (
           <NewLogin/>
       )}
