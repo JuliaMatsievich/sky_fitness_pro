@@ -1,18 +1,21 @@
 import React from 'react'
 import './main.css'
 import { Card } from '../../components/card/Card'
+import { Header } from '../../components/header/header'
+import { MAIN_PAGE } from '../../constants/pagesСonst'
 
 export const MainPage = () => {
   return (
     <div className="main__container-body">
       <div className="wrapper">
         <div className="main__page">
-          <header className="header">
+          <Header namePage={MAIN_PAGE}/>
+          {/* <header className="header">
             <div className="header_wrapper">
               <img className="header_logo" src="img/logo.svg" alt="" />
               <button className="header-button">Войти</button>
             </div>
-          </header>
+          </header> */}
 
           <div className="container">
             <div className="main">

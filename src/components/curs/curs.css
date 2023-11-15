@@ -1,6 +1,3 @@
-.curs__container-body {
-	background-color: #fafafa;
-}
 .curs__header {
 	margin-top: 75px;
 	height: 310px;
@@ -129,7 +126,6 @@
 	background: #f9ebff;
 	margin-top: 75px;
 	padding: 46px 52px;
-	margin-bottom: 159px;
 	background-image: url("../../../public/img/phone.png");
 	background-repeat: no-repeat;
 	background-position: 100%;
