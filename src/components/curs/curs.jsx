@@ -6,7 +6,7 @@ export const Curs = () => {
         <div className="curs__header">
           <h1 className="curs__title">Йога</h1>
           <div className="curs__image">
-            <img src="" alt="" />
+            <img src="\img\stretching-curs.svg" alt="" />
           </div>
         </div>
         <div className="foryou">

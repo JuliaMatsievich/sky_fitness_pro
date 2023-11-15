@@ -3,6 +3,7 @@ import './card.css'
 import { cards } from '../../constants/cardsConst'
 
 export const Cards = () => {
+
   return (
     <>
       {cards.map((card) => (
