@@ -1,4 +1,4 @@
-import { MAIN_PAGE } from "../../constants/pagesСonst"
+import { MAIN_PAGE, PROFILE_PAGE } from "../../constants/pagesСonst"
 import "./header.css"
 
 export const Header = ({namePage}) => {
@@ -11,6 +11,17 @@ export const Header = ({namePage}) => {
           ? <img className="header__logo" src="./img/logo.svg" alt=""/>
           : <img className="header__logo" src="./img/logo-black.svg" alt=""/>
           }
+          {namePage === PROFILE_PAGE ?
+          <div className="header-profileInfo">
+          <img className="header-photo" src="./img/photoProfile.svg" alt="" />
+          <p className="header-p">Сергей</p>
+          <img
+            className="header-settingsProfile"
+            src="./img/settingsProfile.svg"
+            alt=""
+          />
+        </div> : 
+        <button className="header-button">Войти</button>}
         </div>
       </header>
     </>

@@ -1,43 +1,12 @@
-
-.header {
-    display: flex;
-    justify-content: space-between;
-    margin-left: 140px;
-    margin-right: 140px;
-    margin-bottom: 75px;
-    margin-top: 30px;
-}
-
-.header-profileInfo {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 8px;
-}
-
-.header-p {
-    color: #000;
-    text-align: right;
-    font-variant-numeric: lining-nums proportional-nums;
-    font-size: 24px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 32px;
-    /* 133.333% */
-    letter-spacing: -0.1px;
-}
-
-.main-profile {
-    margin-left: 140px;
-    margin-right: 140px;
+.profile {
     margin-bottom: 75px;
 }
 
-.main-profileInfo {
+.profileInfo {
     margin-bottom: 52px;
 }
 
-.main-h1 {
+.profile-h1 {
     margin-bottom: 40px;
     color: #000;
     font-variant-numeric: lining-nums proportional-nums;
@@ -45,10 +14,9 @@
     font-style: normal;
     font-weight: 400;
     line-height: 56px;
-    /* 116.667% */
 }
 
-.main-p {
+.profile-p {
     margin-bottom: 20px;
     color: #000;
     font-variant-numeric: lining-nums proportional-nums;
@@ -56,16 +24,15 @@
     font-style: normal;
     font-weight: 400;
     line-height: 32px;
-    /* 133.333% */
 }
 
-.main-button__profile {
+.profile-button__profile {
     display: flex;
     flex-direction: column;
     gap: 14px;
 }
 
-.main-button-login {
+.profile-button-login {
     border: none;
     width: 275px;
     height: 52px;
@@ -78,19 +45,14 @@
     font-style: normal;
     font-weight: 400;
     line-height: 24px;
-    /* 133.333% */
     letter-spacing: -0.05px;
     cursor:pointer
 }
 
-.main-button-login:hover {
+.profile-button-login:hover {
     background: var(--palette-purple-90, #3b096d);
 }
 
-.footer {
-    margin-left: 140px;
-    margin-right: 140px;
-}
 
 .footer-h1 {
     color: #000;
@@ -99,7 +61,6 @@
     font-style: normal;
     font-weight: 400;
     line-height: 56px;
-    /* 116.667% */
     margin-bottom: 60px;
 }
 
@@ -165,7 +126,6 @@
     font-style: normal;
     font-weight: 800;
     line-height: 110%;
-    /* 39.6px */
     letter-spacing: -0.5px;
 }
 
@@ -187,7 +147,6 @@
     font-style: normal;
     font-weight: 400;
     line-height: 115%;
-    /* 23px */
     letter-spacing: -0.05px;
     display: inline-flex;
     padding: 10px 20px;

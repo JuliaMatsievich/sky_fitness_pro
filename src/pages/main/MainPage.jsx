@@ -1,8 +1,8 @@
 import React from 'react'
 import './main.css'
-import { Card } from '../../components/card/Card'
 import { Header } from '../../components/header/header'
 import { MAIN_PAGE } from '../../constants/pagesСonst'
+import { Cards } from '../../components/card/Card'
 
 export const MainPage = () => {
   return (
@@ -10,12 +10,6 @@ export const MainPage = () => {
       <div className="wrapper">
         <div className="main__page">
           <Header namePage={MAIN_PAGE}/>
-          {/* <header className="header">
-            <div className="header_wrapper">
-              <img className="header_logo" src="img/logo.svg" alt="" />
-              <button className="header-button">Войти</button>
-            </div>
-          </header> */}
 
           <div className="container">
             <div className="main">
@@ -30,11 +24,7 @@ export const MainPage = () => {
               </div>
 
               <div className="main__cards">
-                <Card title={'Йога'} link={'img/yoga.svg'} />
-                <Card title={'Танцевальный фитнес'} link={'img/fitness.svg'} />
-                <Card title={'Стретчинг'} link={'img/stretching.svg'} />
-                <Card title={'Степ-аэробика'} link={'img/step.svg'} />
-                <Card title={'Бодифлекс'} link={'img/bodyflex.svg'} />
+                <Cards />
 
                 <div className="main__logo">
                   <div className="main__logo_img">

@@ -1,5 +1,5 @@
 
-.main {
+.new-login {
     border-radius: 12px;
     background: #FFF;
     width: 366px;
@@ -9,30 +9,28 @@
     justify-content: space-between;
 }
 
-.main-logo {
+.new-login_logo {
     margin-left: 73px;
     margin-right: 73px;
     margin-top: 33px;
 }
 
-.main-login {
+.new-login_login {
     color: #000;
     font-variant-numeric: lining-nums proportional-nums;
     font-size: 18px;
     font-style: normal;
     font-weight: 400;
     line-height: 24px;
-    /* 133.333% */
     letter-spacing: -0.05px;
 }
 
-.main-input {
+.new-login_input {
     font-variant-numeric: lining-nums proportional-nums;
     font-size: 18px;
     font-style: normal;
     font-weight: 400;
     line-height: 24px;
-    /* 133.333% */
     letter-spacing: -0.05px;
     border: none;
     border-bottom: 1px solid #D0CECE;
@@ -40,14 +38,14 @@
     margin-right: 47px;
 }
 
-.main-div__login {
+.new-login_div {
     margin-left: 41px;
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
 
-.main-button {
+.new-login_button {
     border: none;
     cursor: pointer;
     margin-top: 10px;
@@ -65,10 +63,9 @@
     font-style: normal;
     font-weight: 400;
     line-height: 24px;
-    /* 133.333% */
     letter-spacing: -0.05px;
 }
 
-.main-button:hover {
+.new-login_button:hover {
     background: var(--palette-purple-90, #3b096d);
 }

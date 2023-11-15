@@ -4,6 +4,8 @@ import { NewLogin } from '../newLogin/newLogin';
 import { NewPassword } from '../newPassword/newPassword';
 import { useEffect } from 'react';
 import Workout from '../workout/workout';
+import { Header } from '../header/header';
+import { PROFILE_PAGE } from '../../constants/pagesСonst';
 let data;
 
 export function closeWindow(e) {
@@ -52,32 +54,18 @@ export function Profile() {
     }, 500);
   })
   return (
-    <div>
-      <header className="header">
-        
-        <div className="header-profileInfo">
-          <img className="header-logo" src="./img/logo.svg" alt="" />
-        </div>
-        <div className="header-profileInfo">
-          <img className="header-photo" src="./img/photoProfile.svg" alt="" />
-          <p className="header-p">Сергей</p>
-          <img
-            className="header-settingsProfile"
-            src="./img/settingsProfile.svg"
-            alt=""
-          />
-        </div>
-      </header>
+    <div className='wrapper'>
+      <Header namePage={PROFILE_PAGE}/>
 
-      <div className="main-profile">
-        <div className="main-profileInfo">
-          <h1 className="main-h1">Мой профиль</h1>
-          <h2 className="main-p">Логин: sergey.petrov96</h2>
-          <h2 className="main-p">Пароль: 4fkhdj880d</h2>
+      <div className="profile">
+        <div className="profileInfo">
+          <h1 className="profile-h1">Мой профиль</h1>
+          <h2 className="profile-p">Логин: sergey.petrov96</h2>
+          <h2 className="profile-p">Пароль: 4fkhdj880d</h2>
         </div>
-        <div className="main-button__profile">
-          <button onClick={buttonLogin} className="main-button-login">Редактировать логин</button>
-          <button onClick={buttonPassword} className="main-button-login">Редактировать пароль</button>
+        <div className="profile-button__profile">
+          <button onClick={buttonLogin} className="profile-button-login">Редактировать логин</button>
+          <button onClick={buttonPassword} className="profile-button-login">Редактировать пароль</button>
         </div>
       </div>
 
