@@ -1,0 +1,246 @@
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 140px;
+    margin-right: 140px;
+    margin-bottom: 75px;
+    margin-top: 30px;
+}
+
+.header-profileInfo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+}
+
+.header-p {
+    color: #000;
+    text-align: right;
+    font-variant-numeric: lining-nums proportional-nums;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 32px;
+    /* 133.333% */
+    letter-spacing: -0.1px;
+}
+
+.main-profile {
+    margin-left: 140px;
+    margin-right: 140px;
+    margin-bottom: 75px;
+}
+
+.main-profileInfo {
+    margin-bottom: 52px;
+}
+
+.main-h1 {
+    margin-bottom: 40px;
+    color: #000;
+    font-variant-numeric: lining-nums proportional-nums;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 56px;
+    /* 116.667% */
+}
+
+.main-p {
+    margin-bottom: 20px;
+    color: #000;
+    font-variant-numeric: lining-nums proportional-nums;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 32px;
+    /* 133.333% */
+}
+
+.main-button__profile {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.main-button-login {
+    border: none;
+    width: 275px;
+    height: 52px;
+    flex-shrink: 0;
+    border-radius: 46px;
+    background: var(--palette-purple-90, #580EA2);
+    color: white;
+    font-variant-numeric: lining-nums proportional-nums;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+    /* 133.333% */
+    letter-spacing: -0.05px;
+    cursor:pointer
+}
+
+.main-button-login:hover {
+    background: var(--palette-purple-90, #3b096d);
+}
+
+.footer {
+    margin-left: 140px;
+    margin-right: 140px;
+}
+
+.footer-h1 {
+    color: #000;
+    font-variant-numeric: lining-nums proportional-nums;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 56px;
+    /* 116.667% */
+    margin-bottom: 60px;
+}
+
+.footer-main {
+    display: inline-flex;
+    align-items: flex-start;
+    gap: 40px;
+}
+
+.footer-main-block {
+    width: 360px;
+    height: 480px;
+    border-radius: 30px;
+    background: rgba(205, 205, 205, 0.10);
+    backdrop-filter: blur(14.51865291595459px);
+    color: rgba(205, 205, 205, 0.1);
+}
+
+.footer-img-union {
+    display: flex;
+    flex-direction: row;
+}
+
+.footer-img-gap1 {
+    width: 300px;
+    height: 280px;
+    margin-left: 30px;
+    margin-bottom: 15px;
+}
+
+.footer-img-gap2 {
+    margin-left: 130px;
+    margin-bottom: 15px;
+}
+
+.footer-img-gap3 {
+    margin-left: 108px;
+    margin-bottom: 17px;
+}
+
+.img1 {
+    background-image: url(/public/img/Subtract1.png);
+}
+
+.img2 {
+    background-image: url(/public/img/Subtract.png);
+}
+
+.img3 {
+    background-image: url(/public/img/Subtract3.png);
+}
+
+.footer-main-h1 {
+    margin-left: 30px;
+    margin-top: 30px;
+    margin-right: 40px;
+    width: 290px;
+    height: 130px;
+    color: #000;
+    font-variant-numeric: lining-nums proportional-nums;
+    font-family: Abhaya Libre ExtraBold;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: 110%;
+    /* 39.6px */
+    letter-spacing: -0.5px;
+}
+
+.help-for-h1 {
+    height: 120px;
+}
+
+.help-for-h1-1 {
+    height: 70px;
+}
+
+.footer-main-button {
+    border: none;
+    cursor:pointer;
+    color: #000;
+    text-align: center;
+    font-variant-numeric: lining-nums proportional-nums;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 115%;
+    /* 23px */
+    letter-spacing: -0.05px;
+    display: inline-flex;
+    padding: 10px 20px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 80px;
+    background: #C7E957;
+    margin-left: 30px;
+    margin-bottom: 27px;
+}
+
+.footer-main-button:hover {
+    background: #d1eb7c;
+}
+
+.for__profile {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    z-index: 999;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.close-png {
+    display: block !important;
+    width: 20px;
+    cursor: pointer;
+    position: relative;
+    left: 350px;
+    top: -145px;
+}
+
+.main-password__close {
+    display: block !important;
+    width: 20px;
+    cursor: pointer;
+    position: relative;
+    left: 355px;
+    top: -180px;
+}
+
+.close-png:hover {
+    background-color: gray;
+    border-radius: 3px;
+}
+
+.close-png__workout {
+    top: -230px;
+    left: 430px;
+}
