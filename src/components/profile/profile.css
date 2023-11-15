@@ -13,6 +13,7 @@
     flex-direction: row;
     align-items: center;
     gap: 8px;
+    cursor: pointer;
 }
 
 .header-p {
@@ -243,4 +244,25 @@
 .close-png__workout {
     top: -230px;
     left: 430px;
+}
+
+.header-profile-div__main {
+    display: flex;
+    flex-flow: column;
+    justify-content: flex-end;
+    position: absolute;
+    top: 13rem;
+    right: 8.7rem;
+    width: 100%;
+    transition: height 0.3s ease-in-out 0s;
+    height: 0rem;
+}
+
+.header-profile-div {
+    width: inherit;
+    text-align: right;
+    cursor: pointer;
+    font-size: 1.5rem;
+    line-height: 1.7;
+    color: rgb(0, 0, 0);
 }
