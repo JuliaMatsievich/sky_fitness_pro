@@ -3,7 +3,7 @@ body {
 	background-color: #FAFAFA;;
 }
 
-.curs_header {
+.curs__header {
 	margin-top: 75px;
 	height: 310px;
 	border-radius: 30px;
@@ -12,7 +12,7 @@ body {
 	padding: 30px 0px 0px 30px;
 	background-image: url(../../../public/img/skill-yoga.png);
 }
-.curs_title {
+.curs__title {
 	width: 528px;
 	font-size: 64px;
 	font-style: normal;
@@ -20,14 +20,14 @@ body {
 	line-height: 72px; /* 112.5% */
 	letter-spacing: -0.8px;
 }
-.curs_image {
+.curs__image {
 }
 
 .foryou {
 	margin-top: 75px;
 }
 
-.foryou_title {
+.foryou__title {
 	font-variant-numeric: lining-nums proportional-nums;
 	font-size: 40px;
 	font-style: normal;
@@ -36,14 +36,14 @@ body {
 	margin-bottom: 40px;
 }
 
-.foryou_list {
+.foryou__list {
 	display: flex;
 	justify-content: space-between;
 	align-items: flex-start;
 	gap: 87px;
 }
 
-.foryou_item {
+.foryou__item {
 	display: flex;
 	justify-content: space-between;
 	gap: 24px;
@@ -52,7 +52,7 @@ body {
 .foryou-item {
 }
 
-.foryou-item_count {
+.foryou-item__count {
 	color: #000;
 	min-width: 67px;
 	height: 67px;
@@ -73,7 +73,7 @@ body {
 	gap: 13.359px;
 }
 
-.foryou-item_text {
+.foryou-item__text {
 	color: #000;
 	max-width: 244px;
 	font-size: 24px;
@@ -86,7 +86,7 @@ body {
 	margin-top: 75px;
 }
 
-.directions_title {
+.directions__title {
 	color: #000;
 	font-size: 40px;
 	font-style: normal;
@@ -95,11 +95,11 @@ body {
 	margin-bottom: 22px;
 }
 
-.directions_list {
+.directions__list {
 	columns: 422px;
 }
 
-.directions_item {
+.directions__item {
 	list-style-type: disc;
 	list-style-position: inside;
 	color: #000;
@@ -113,7 +113,7 @@ body {
 	margin-top: 75px;
 }
 
-.description_text {
+.description__text {
 	color: #000;
 	font-size: 24px;
 	font-style: normal;
@@ -121,7 +121,7 @@ body {
 	line-height: 133.333%;
 }
 
-.description_text:not(:last-child) {
+.description__text:not(:last-child) {
 	margin-bottom: 20px;
 }
 
@@ -137,7 +137,7 @@ body {
 	background-position: 100%;
 }
 
-.signUpTrain_text {
+.signUpTrain__text {
 	color: #000;
 	font-size: 32px;
 	font-style: normal;
@@ -147,17 +147,3 @@ body {
 	margin-bottom: 34px;
 }
 
-.signUpTrain_btn {
-	border: none;
-	border-radius: 46px;
-	background: var(--palette-purple-90, #580ea2);
-	color: #fff;
-	font-size: 18px;
-	font-style: normal;
-	font-weight: 400;
-	line-height: 24px; /* 133.333% */
-	letter-spacing: -0.05px;
-	padding: 12px 24px 16px 24px;
-	cursor: pointer;
-
-}
