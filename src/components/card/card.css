@@ -5,10 +5,11 @@
     height: 480px;
     cursor: pointer;
     background-color: #F4F4FF;
+    transition: all 0.3s ease 0s;;
 }
 
 .card:hover {
-    transform: scale(1.1);
+    transform: scale(1.05);
 }
 
 .card span {
@@ -20,11 +21,11 @@
     font-size: 36px;
     font-style: normal;
     font-weight: 800;
-    line-height: 110%; /* 39.6px */
+    line-height: 110%;
     letter-spacing: -0.5px;
 }
 
-.img {
+.card-img {
     width: 360px;
     height: 480px;
 }
