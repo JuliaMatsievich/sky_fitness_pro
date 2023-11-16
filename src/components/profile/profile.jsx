@@ -6,8 +6,6 @@ import { useEffect } from 'react';
 import Workout from '../workout/workout';
 import { Header } from '../header/header';
 import { PROFILE_PAGE } from '../../constants/pagesСonst';
-import { Header } from '../header/header';
-import { PROFILE_PAGE } from '../../constants/pagesСonst';
 let data;
 
 export function closeWindow(e) {
@@ -57,7 +55,7 @@ export function Profile() {
     }, 200);
   })
   return (
-    <div>
+    <>
       <Header namePage={PROFILE_PAGE}/>
     <div className='wrapper'>
 
@@ -112,6 +110,7 @@ export function Profile() {
       )}
     </div>
     </div>
+    </>
   )
 }
 
