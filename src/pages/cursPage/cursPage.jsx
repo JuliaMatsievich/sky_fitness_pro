@@ -6,8 +6,8 @@ import './cursPage.css'
 export const CursPage = () => {
   return (
       <div className="curs__container-body">
+        <Header namePage={CURS_PAGE} />
         <div className="wrapper">
-          <Header namePage={CURS_PAGE} />
           <Curs />
         </div>
       </div>
