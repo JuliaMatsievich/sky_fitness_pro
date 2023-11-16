@@ -26,8 +26,6 @@ export const MainPage = () => {
 
               <div className="main__cards">
                 <Cards />
-                <Cards />
-
                 <div className="main__logo">
                   <div className="main__logo_img">
                     <img src="img/Union.svg" alt=""></img>
