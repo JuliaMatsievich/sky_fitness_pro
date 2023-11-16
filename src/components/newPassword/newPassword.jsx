@@ -7,7 +7,7 @@ export function NewPassword() {
     <div className='for__profile'>
     <img onClick={() => closeWindow(false)} className='close-png main-password__close' src="./img/close.png" alt="" />
       <div className="new-password_password">
-        <img className="new-password_logo" src="./img/logo.svg" alt="" />
+        <img className="new-password_logo" src="./img/logo-black.svg" alt="" />
         <div className="new-password_div">
           <h2 className="new-password_login">Новый пароль:</h2>
           <div className="new-password_div-login">
