@@ -1,15 +1,16 @@
 import React from 'react'
 import './main.css'
-import { Header } from '../../components/header/header'
+
 import { MAIN_PAGE } from '../../constants/pagesСonst'
+import { Header } from '../../components/header/header'
 import { Cards } from '../../components/card/Card'
 
 export const MainPage = () => {
   return (
     <div className="main__container-body">
+      <Header namePage={MAIN_PAGE}/>
       <div className="wrapper">
         <div className="main__page">
-          <Header namePage={MAIN_PAGE}/>
 
           <div className="container">
             <div className="main">
@@ -24,6 +25,7 @@ export const MainPage = () => {
               </div>
 
               <div className="main__cards">
+                <Cards />
                 <Cards />
 
                 <div className="main__logo">

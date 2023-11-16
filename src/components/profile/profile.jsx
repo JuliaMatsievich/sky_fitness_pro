@@ -6,6 +6,8 @@ import { useEffect } from 'react';
 import Workout from '../workout/workout';
 import { Header } from '../header/header';
 import { PROFILE_PAGE } from '../../constants/pagesСonst';
+import { Header } from '../header/header';
+import { PROFILE_PAGE } from '../../constants/pagesСonst';
 let data;
 
 export function closeWindow(e) {
@@ -43,6 +45,7 @@ export function Profile() {
   const [isShowWorkout, setIsShowWorkout] = useState(false);
   const [isShowLogin, setIsShowLogin] = useState(false);
   const [isShowPassword, setIsShowPassword] = useState(false);
+
   useEffect(() => {
     setInterval(() => {
       if (data === false) {
@@ -51,11 +54,12 @@ export function Profile() {
         setIsShowWorkout(false);
         data = true;
       }
-    }, 500);
+    }, 200);
   })
   return (
-    <div className='wrapper'>
+    <div>
       <Header namePage={PROFILE_PAGE}/>
+    <div className='wrapper'>
 
       <div className="profile">
         <div className="profileInfo">
@@ -63,6 +67,9 @@ export function Profile() {
           <h2 className="profile-p">Логин: sergey.petrov96</h2>
           <h2 className="profile-p">Пароль: 4fkhdj880d</h2>
         </div>
+        <div className="profile-button__profile">
+          <button onClick={buttonLogin} className="profile-button-login">Редактировать логин</button>
+          <button onClick={buttonPassword} className="profile-button-login">Редактировать пароль</button>
         <div className="profile-button__profile">
           <button onClick={buttonLogin} className="profile-button-login">Редактировать логин</button>
           <button onClick={buttonPassword} className="profile-button-login">Редактировать пароль</button>
@@ -103,6 +110,7 @@ export function Profile() {
       {isShowWorkout && (
         <Workout/>
       )}
+    </div>
     </div>
   )
 }
