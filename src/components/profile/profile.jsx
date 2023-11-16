@@ -65,10 +65,7 @@ export function Profile() {
           <h2 className="profile-p">Логин: sergey.petrov96</h2>
           <h2 className="profile-p">Пароль: 4fkhdj880d</h2>
         </div>
-        <div className="profile-button__profile">
-          <button onClick={buttonLogin} className="profile-button-login">Редактировать логин</button>
-          <button onClick={buttonPassword} className="profile-button-login">Редактировать пароль</button>
-        <div className="profile-button__profile">
+         <div className="profile-button__profile">
           <button onClick={buttonLogin} className="profile-button-login">Редактировать логин</button>
           <button onClick={buttonPassword} className="profile-button-login">Редактировать пароль</button>
         </div>
@@ -108,7 +105,6 @@ export function Profile() {
       {isShowWorkout && (
         <Workout/>
       )}
-    </div>
     </div>
     </>
   )
