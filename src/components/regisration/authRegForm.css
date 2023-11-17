@@ -41,7 +41,7 @@
 
 .authorization-form__input {
     font-variant-numeric: lining-nums proportional-nums;
-    font-family: StratosSkyeng;
+    font-family: "StratosSkyeng", sans-serif;
     font-size: 18px;
     font-style: normal;
     font-weight: 400;
