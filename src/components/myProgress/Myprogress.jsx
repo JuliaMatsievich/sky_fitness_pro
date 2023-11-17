@@ -42,7 +42,7 @@ export const MyProgress = ({ setIsProgressFilled }) => {
             placeholder="Введите значение"
           />
         </div>
-        <button type="submit" className="submit-button" onClick={fillProgressComplete}>
+        <button type="submit" className="submit-button btn-purple" onClick={fillProgressComplete}>
           Отправить
         </button>
       </div>
