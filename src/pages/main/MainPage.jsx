@@ -2,7 +2,7 @@ import React from 'react'
 import './main.css'
 
 import { MAIN_PAGE } from '../../constants/pagesСonst'
-import { Header } from '../../components/header/header'
+import { Header } from '../../components/header/header.jsx'
 import { Cards } from '../../components/card/Card'
 
 export const MainPage = () => {
@@ -25,7 +25,6 @@ export const MainPage = () => {
               </div>
 
               <div className="main__cards">
-                <Cards />
                 <Cards />
 
                 <div className="main__logo">

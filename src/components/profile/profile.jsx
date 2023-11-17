@@ -6,8 +6,7 @@ import { useEffect } from 'react';
 import Workout from '../workout/workout';
 import { Header } from '../header/header';
 import { PROFILE_PAGE } from '../../constants/pagesСonst';
-import { Header } from '../header/header';
-import { PROFILE_PAGE } from '../../constants/pagesСonst';
+
 let data;
 
 export function closeWindow(e) {
@@ -70,10 +69,6 @@ export function Profile() {
         <div className="profile-button__profile">
           <button onClick={buttonLogin} className="profile-button-login">Редактировать логин</button>
           <button onClick={buttonPassword} className="profile-button-login">Редактировать пароль</button>
-        <div className="profile-button__profile">
-          <button onClick={buttonLogin} className="profile-button-login">Редактировать логин</button>
-          <button onClick={buttonPassword} className="profile-button-login">Редактировать пароль</button>
-        </div>
       </div>
 
       <footer className="footer">
@@ -110,6 +105,7 @@ export function Profile() {
       {isShowWorkout && (
         <Workout/>
       )}
+    </div>
     </div>
     </div>
   )

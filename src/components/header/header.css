@@ -44,6 +44,7 @@
     flex-direction: row;
     align-items: center;
     gap: 8px;
+}
 .header__wrapper {
     display: flex;
     flex-direction: row;
@@ -94,6 +95,11 @@
     letter-spacing: -0.1px;
 }
 
+.header-profileInfo:hover {
+    background-color: gray;
+    border-radius: 25px;
+}
+
 .header-profile-div__main {
     display: flex;
     flex-flow: column;
@@ -113,6 +119,10 @@
     font-size: 1.5rem;
     line-height: 1.7;
     color: rgb(0, 0, 0);
+}
+
+.header-profile-div:hover {
+    color: gray;
 }
 
 .header-p__white {

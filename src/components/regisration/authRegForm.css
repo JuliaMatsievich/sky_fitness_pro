@@ -1,0 +1,108 @@
+.authorization-form {
+    border-radius: 12px;
+    background: #FFF;
+    margin-left: 140px;
+    margin-right: 140px;
+    width: 23rem;
+    height: 27rem;
+    display: flex;
+    flex-flow: column;
+    gap: 2.5rem;
+    background-color: rgb(255, 255, 255);
+    border-radius: 1rem;
+    padding: 2rem 2.5rem;
+}
+
+.main-authorization {
+    background-color: #271a58;
+    ;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.authorization-form__forImg {
+    display: flex;
+    justify-content: center;
+}
+
+.authorization-form__img {
+    width: 220px;
+    height: 35px;
+}
+
+.authorization-form__inputs {
+    display: flex;
+    flex-flow: column;
+    gap: 1.25rem;
+}
+
+.authorization-form__input {
+    font-variant-numeric: lining-nums proportional-nums;
+    font-family: StratosSkyeng;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+    /* 133.333% */
+    letter-spacing: -0.05px;
+    border: none;
+    border-bottom: 1px solid gray;
+    outline: none;
+    cursor: pointer;
+    line-height: 3rem;
+    font-size: 1.25rem;
+}
+
+.authorization-form__buttons {
+    display: flex;
+    flex-flow: column;
+    gap: 1.25rem;
+}
+
+.authorization-form__button {
+    width: 278px;
+    height: 52px;
+    flex-shrink: 0;
+    border-radius: 46px;
+    background: var(--palette-purple-90, #580EA2);
+    cursor: pointer;
+    border: none;
+    color: #FFF;
+    font-family: inherit;
+    font-size: 1.25rem;
+}
+
+.authorization-form__button:hover {
+    background-color: #4a2475;
+}
+
+.authorization-form__button:active {
+    border-radius: 46px;
+    background: var(--palette-purple-100, #271A58);
+}
+
+.authorization-form__button__reg {
+    border-radius: 46px;
+    border: 1px solid #D0CECE;
+    background-color: #FFF;
+    color: black;
+}
+
+.authorization-form__button__reg:hover {
+    background-color: rgb(221, 219, 231);
+}
+
+.authorization-form__button__reg:active {
+    border-radius: 46px;
+    border: 1px solid #D0CECE;
+    background: #D9D9D9;
+}
+
+.main-authorization__logo {
+    position: absolute;
+    left: 50px;
+    top: 30px;
+}
