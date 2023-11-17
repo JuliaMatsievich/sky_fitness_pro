@@ -52,7 +52,7 @@ export const WorkoutPage = () => {
                   <li>Наклон назад (10 повторений)</li>
                   <li>Поднятие ног, согнутых в коленях (5 повторений)</li>
                 </ul>
-                <button onClick={fillProgress}>Заполнить свой прогресс</button>
+                <button onClick={fillProgress} className='btn-purple'>Заполнить свой прогресс</button>
               </div>
 
               <div className="workout-progress">
