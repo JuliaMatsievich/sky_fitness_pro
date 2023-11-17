@@ -6,6 +6,13 @@ import { Header } from '../../components/header/header.jsx'
 import { Cards } from '../../components/card/Card'
 
 export const MainPage = () => {
+  const scrollUp = () => {
+    window.scrollTo({
+      top: 0,
+      behaviour: 'smooth'
+    })
+  }
+
   return (
     <div className="main__container-body">
       <Header namePage={MAIN_PAGE}/>
@@ -34,7 +41,7 @@ export const MainPage = () => {
               </div>
             </div>
 
-            <button className="main__button">Вверх!</button>
+            <button className="main__button" onClick={scrollUp}>Вверх!</button>
           </div>
         </div>
       </div>
