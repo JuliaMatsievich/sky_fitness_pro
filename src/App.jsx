@@ -1,13 +1,14 @@
 import './App.css'
 import { AppRoutes } from './routes'
 import { createContext, useState } from 'react'
-// import { firestore } from './firebase'
+import { useGetCoursesQuery } from './services/coursesApi'
+
 export const UserContext = createContext(null)
 
 function App() {
   const [isUser, setIsUser] = useState(true)
-
-  // console.log(firestore.collection('courses').get())
+  const {data} = useGetCoursesQuery()
+  console.log(data);
 
   return (
     <>
