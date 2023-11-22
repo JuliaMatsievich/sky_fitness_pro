@@ -1,6 +1,7 @@
 import './curs.css'
 
 export const Curs = () => {
+
   return (
     <>
         <div className="curs__header">

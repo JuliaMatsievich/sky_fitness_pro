@@ -1,8 +1,16 @@
 import React from 'react'
 import './card.css'
 import { cards } from '../../constants/cardsConst'
+import { useGetCoursesQuery } from '../../services/coursesApi'
 
 export const Cards = () => {
+
+  const {data: courses} = useGetCoursesQuery()
+  console.log('data',courses);
+
+  const handleClickCard = () => {
+    
+  }
 
   return (
     <>

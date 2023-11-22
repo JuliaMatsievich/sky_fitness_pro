@@ -23,19 +23,15 @@ export const coursesApi = createApi({
   endpoints: (builder) => ({
     getCourses: builder.query({
       async queryFn() {
-        const courseRef = ref(db)
-        get(child(courseRef, `courses/`))
-        .then((snapshot) => {
-          if (snapshot.exists()) {
-        	 console.log(snapshot.val())
-           return {data: snapshot.val()}
-          } else {
-        	 console.log('No data available')
-          }
-        })
-        .catch((error) => {
-          console.error(error)
-        })
+        try {
+          const courseRef = ref(db)
+          const course = await get(child(courseRef, `courses/`))
+          const result = await course.val()
+          return {data: Object.values(result)}
+        }
+        catch (error) {
+          console.log(error);
+        }
       },
       providesTags: ['Courses '],
     }),
