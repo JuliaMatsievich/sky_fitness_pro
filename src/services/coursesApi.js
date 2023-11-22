@@ -25,9 +25,10 @@ export const coursesApi = createApi({
       async queryFn() {
         try {
           const courseRef = ref(db)
-          const course = await get(child(courseRef, `courses/`))
-          const result = await course.val()
-          return {data: Object.values(result)}
+          const snapshot = await get(child(courseRef, `courses/`))
+          const result = Object.values(snapshot.val())
+          console.log('result', result);  
+          return {data: result}
         }
         catch (error) {
           console.log(error);
@@ -38,4 +39,4 @@ export const coursesApi = createApi({
   }),
 })
 
-export const {useGetCoursesQuery} = coursesApi
+export const {useGetCoursesQuery, useLazyGetCoursesQuery} = coursesApi

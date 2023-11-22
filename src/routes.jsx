@@ -15,7 +15,7 @@ export const AppRoutes = () => {
   return (
     <Routes>
       <Route path="/" element={<MainPage />} />
-      <Route path="/curs" element={<CursPage />} />
+      <Route path="/curs/:id" element={<CursPage />} />
       <Route element={<ProtectedRoute isAllowed={Boolean(isUser)} />}>
         <Route path="/profile" element={<ProfilePage />} />
         <Route path='/workout' element={<WorkoutPage />}/>

@@ -1,23 +1,18 @@
 import React from 'react'
 import './card.css'
 import { cards } from '../../constants/cardsConst'
-import { useGetCoursesQuery } from '../../services/coursesApi'
+import { Link } from 'react-router-dom'
 
 export const Cards = () => {
-
-  const {data: courses} = useGetCoursesQuery()
-  console.log('data',courses);
-
-  const handleClickCard = () => {
-    
-  }
 
   return (
     <>
       {cards.map((card) => (
-        <div className="card"  key={card.id}>
+        <div className="card" key={card.id}>
+          <Link to={`/curs/${card.id}`}>
           <span>{card.title}</span>
           <img className="card-img" src={card.src} alt="" />
+          </Link>
         </div>
       ))}
     </>

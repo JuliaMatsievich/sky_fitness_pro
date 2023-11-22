@@ -21,9 +21,9 @@ export const Header = ({ namePage }) => {
         <div className="header__wrapper">
           <Link to="/">
             {namePage === MAIN_PAGE ? (
-              <img className="header__logo" src="./img/logo.svg" alt="" />
+              <img className="header__logo" src="/img/logo.svg" alt="" />
             ) : (
-              <img className="header__logo" src="./img/logo-black.svg" alt="" />
+              <img className="header__logo" src="/img/logo-black.svg" alt="" />
             )}
           </Link>
           {isUser ? (
