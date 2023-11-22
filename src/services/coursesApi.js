@@ -25,7 +25,7 @@ export const coursesApi = createApi({
       async queryFn() {
         try {
           const courseRef = ref(db)
-          const snapshot = await get(child(courseRef, `courses/`))
+          const snapshot = get(child(courseRef, `courses/`))
           const result = Object.values(snapshot.val())
           console.log('result', result);  
           return {data: result}
@@ -34,7 +34,13 @@ export const coursesApi = createApi({
           console.log(error);
         }
       },
-      providesTags: ['Courses '],
+      providesTags: (result) =>
+      result
+        ? [
+            ...result.map(({ id }) => ({ type: 'Courses', id })),
+            { type: 'Courses', id: 'LIST' },
+          ]
+        : [{ type: 'Courses', id: 'LIST' }],
     }),
   }),
 })

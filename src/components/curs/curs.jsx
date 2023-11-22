@@ -2,9 +2,9 @@ import './curs.css'
 import {
   useGetCoursesQuery,
   useLazyGetCoursesQuery,
-} from '../../services/coursesApi'
+} from 'services/coursesApi'
 import { useEffect } from 'react'
-import { Curses } from '../../constants/cursData'
+import { Curses } from 'constants/cursData'
 
 export const Curs = ({ cursId }) => {
   // const {data: courses, isLoading} = useGetCoursesQuery()
@@ -35,7 +35,7 @@ export const Curs = ({ cursId }) => {
       ) : (
         <>
           <div className="curs__header">
-            <h1 className="curs__title">{currentCurs.title}</h1>
+            <h1 className="curs__title">{currCurs.title}</h1>
             <div className="curs__image">
               <img src="/img/fitness-curs.svg" alt="" />
             </div>
