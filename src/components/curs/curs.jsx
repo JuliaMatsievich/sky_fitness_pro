@@ -43,16 +43,13 @@ export const Curs = ({ cursId }) => {
           <div className="foryou">
             <h2 className="foryou__title">Подойдет для вас, если:</h2>
             <div className="foryou__list">
-              {currentCurs.foryou.map((item,index) => {
+              {currentCurs.foryou.map((item, index) => {
                 return (
-                  <div className="foryou__item foryou-item" key={index+5}>
-                  <div className="foryou-item__count">{index+1}</div>
-                  <p className="foryou-item__text">
-                    {item}
-                  </p>
-                </div>
+                  <div className="foryou__item foryou-item" key={index + 5}>
+                    <div className="foryou-item__count">{index + 1}</div>
+                    <p className="foryou-item__text">{item}</p>
+                  </div>
                 )
-
               })}
             </div>
           </div>
@@ -60,26 +57,24 @@ export const Curs = ({ cursId }) => {
           <div className="directions">
             <h2 className="directions__title">Направления:</h2>
             <ul className="directions__list">
-              {currentCurs.directions.map((direction,index) => {
+              {currentCurs.directions.map((direction, index) => {
                 return (
-                  <li className="directions__item" key={index+10}>{direction}</li>
+                  <li className="directions__item" key={index + 10}>
+                    {direction}
+                  </li>
                 )
               })}
             </ul>
           </div>
 
           <div className="description">
-            <p className="description__text">
-              Йога - это философия здорового образа жизни. Тот, кто занимается
-              йогой, становится здоровее и выносливее, после занятий чувствует
-              прилив сил, а также с новой силой может ощутить вкус к жизни.
-            </p>
-            <p className="description__text">
-              Благодаря комплексному воздействию упражнений происходит
-              проработка всех групп мышц, тренировка суставов, улучшается
-              циркуляция крови. Кроме того, упражнения дарят отличное
-              настроение, заряжают бодростью и помогают противостоять стрессам.
-            </p>
+            {currentCurs.description.map((descr, index) => {
+              return (
+                <p className="description__text" key={index+50}>{descr}
+              </p>
+              )
+
+            })}
           </div>
         </>
       )}
