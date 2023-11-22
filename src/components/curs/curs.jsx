@@ -60,12 +60,11 @@ export const Curs = ({ cursId }) => {
           <div className="directions">
             <h2 className="directions__title">Направления:</h2>
             <ul className="directions__list">
-              <li className="directions__item">Йога для новичков</li>
-              <li className="directions__item">Классическая йога</li>
-              <li className="directions__item">Йогатерапия</li>
-              <li className="directions__item">Кундалини-йога</li>
-              <li className="directions__item">Хатха-йога</li>
-              <li className="directions__item">Аштанга-йога</li>
+              {currentCurs.directions.map((direction,index) => {
+                return (
+                  <li className="directions__item" key={index+10}>{direction}</li>
+                )
+              })}
             </ul>
           </div>
 
