@@ -36,11 +36,8 @@ export const Curs = ({ cursId }) => {
     get(child(courseRef, `courses/`))
       .then((snapshot) => {
         if (snapshot.exists()) {
-          // console.log(snapshot.val())
           const curses = Object.values(snapshot.val())
-          console.log(curses)
           setCurrentCurs(curses.find((curs) => curs._id === cursId))
-          console.log('currentCurs', currentCurs)
           setIsLoading(false)
         } else {
           console.log('No data available')
