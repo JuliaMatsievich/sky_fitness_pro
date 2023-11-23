@@ -18,10 +18,6 @@ a:visited {
   cursor: pointer;
 }
 
-ul li {
-  list-style: none;
-}
-
 @font-face {
   font-family: "StratosSkyeng";
   src: local("StratosSkyeng"), local("StratosSkyeng"),
@@ -39,3 +35,6 @@ body {
   color: #000;
 }
 
+input::placeholder {
+  font-family: "StratosSkyeng", sans-serif;
+}

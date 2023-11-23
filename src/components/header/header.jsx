@@ -2,10 +2,12 @@ import { useContext, useEffect, useState } from 'react'
 import { MAIN_PAGE, PROFILE_PAGE } from '../../constants/pagesСonst'
 import './header.css'
 import { UserContext } from '../../App'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 export const Header = ({ namePage }) => {
-  const { isUser, setIsUser } = useContext(UserContext)
+  const push = useNavigate();
+  const [yourName, setYourName] = useState('');
+  const [ isUser, setIsUser ] = useState('');
   const openMenuProfile = () => {
     if (isShowMenu === true) {
       setIsShowMenu(false)
@@ -13,7 +15,20 @@ export const Header = ({ namePage }) => {
       setIsShowMenu(true)
     }
   }
-  const [isShowMenu, setIsShowMenu] = useState(false)
+  function logout() {
+    localStorage.clear();
+    window.location.href = '/';
+  }
+  const [isShowMenu, setIsShowMenu] = useState(false);
+  useEffect(() => {
+    let name = localStorage.getItem('userName');
+    if (name) {
+      setIsUser(true);
+    }
+    setInterval(() => {
+      setYourName(localStorage.getItem('userName'));
+    }, 100);
+  }, [])
 
   return (
     <>
@@ -34,9 +49,9 @@ export const Header = ({ namePage }) => {
                 alt=""
               />
               {namePage === MAIN_PAGE ? (
-              <p className="header-p header-p__white">Сергей</p>
+              <p className="header-p header-p__white">{yourName}</p>
             ) : (
-              <p className="header-p">Сергей</p>
+              <p className="header-p">{yourName}</p>
             )}
             {namePage === MAIN_PAGE ? (
               <svg width="17px" height="20px" viewBox="0 0 14 9" fill="none" xmlns="http://www.w3.org/2000/svg" color="white"><path d="M12.3552 1.03308L6.67761 6.7107L0.999999 1.03308" stroke="currentColor" strokeWidth="2"></path></svg>
@@ -50,7 +65,9 @@ export const Header = ({ namePage }) => {
               
             </div>
           ) : (
+            <Link to='/auth'>
             <button className="header-button">Войти</button>
+            </Link>
           )}
           {isShowMenu && (
             <div className="header-profile-div__main">
@@ -62,7 +79,7 @@ export const Header = ({ namePage }) => {
               <Link to="/profile">
                 <div className="header-profile-div header-p__white">Профиль</div>
               </Link>
-              <div className="header-profile-div header-p__white">Выйти</div>
+              <div onClick={logout} className="header-profile-div header-p__white">Выйти</div>
               </div>
             ) : (
               <div>
@@ -72,7 +89,7 @@ export const Header = ({ namePage }) => {
               <Link to="/profile">
                 <div className="header-profile-div">Профиль</div>
               </Link>
-              <div className="header-profile-div">Выйти</div>
+              <div onClick={logout} className="header-profile-div">Выйти</div>
               </div>
             )}
             </div>
