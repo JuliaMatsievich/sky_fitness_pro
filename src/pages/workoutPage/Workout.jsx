@@ -3,6 +3,8 @@ import './workout.css'
 import { Header } from '../../components/header/header'
 import { MyProgress } from '../../components/myProgress/Myprogress'
 
+let data
+
 export const WorkoutPage = () => {
   const [isProgressPop, setIsProgressPop] = useState(false)
   const [isProgressFilled, setIsProgressFilled] = useState(false)
@@ -10,6 +12,11 @@ export const WorkoutPage = () => {
   const fillProgress = () => {
     setIsProgressPop(true)
     setIsProgressFilled(false)
+  }
+
+  const closePopup = () => {
+    setIsProgressFilled(false)
+    setIsProgressPop(false)
   }
 
   useEffect(() => {
@@ -52,7 +59,9 @@ export const WorkoutPage = () => {
                   <li>Наклон назад (10 повторений)</li>
                   <li>Поднятие ног, согнутых в коленях (5 повторений)</li>
                 </ul>
-                <button onClick={fillProgress} className='btn-purple'>Заполнить свой прогресс</button>
+                <button onClick={fillProgress} className="btn-purple">
+                  Заполнить свой прогресс
+                </button>
               </div>
 
               <div className="workout-progress">
@@ -96,12 +105,27 @@ export const WorkoutPage = () => {
         </div>
         {isProgressPop && !isProgressFilled ? (
           <div className="workout-progress_popup">
-            <MyProgress setIsProgressFilled={setIsProgressFilled} />
+            <MyProgress
+              setIsProgressFilled={setIsProgressFilled}
+              closePopup={closePopup}
+            />
           </div>
         ) : null}
         {isProgressFilled ? (
           <div className="workout-progress_popup">
-            <img src="img/progress-complete.png" alt="" />
+            <div className="my-progress_complete">
+              <div className="my-progress__close">
+                <div className="my-progress__close_btn">
+                  <img
+                    src="img/close.png"
+                    alt="close"
+                    className="my-progress__close-png"
+                    onClick={closePopup}
+                  />
+                </div>
+              </div>
+              <img src="img/progress-complete.png" alt="progress" />
+            </div>
           </div>
         ) : null}
       </div>
