@@ -60,7 +60,7 @@ export const Curs = ({ cursId }) => {
           <div className="curs__header">
             <h1 className="curs__title">{currentCurs.name}</h1>
             <div className="curs__image">
-              <img src="/img/fitness-curs.svg" alt="" />
+              <img src={currentCurs.img_for_curs} alt="" />
             </div>
           </div>
           <div className="foryou">
