@@ -7,6 +7,8 @@ export const UserContext = createContext(null)
 
 function App() {
   const [isUser, setIsUser] = useState(true)
+  // const {data: courses} = useGetCoursesQuery()
+  // console.log('coursesApp', courses);
 
   return (
     <>
