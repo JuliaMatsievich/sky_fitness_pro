@@ -1,37 +1,12 @@
 import './curs.css'
-import { useGetCoursesQuery, useLazyGetCoursesQuery } from 'services/coursesApi'
 import { useEffect, useState } from 'react'
-import { Curses } from 'constants/cursData'
-import { db } from '../../firebase'
-import { ref, child, get } from 'firebase/database'
 
 export const Curs = ({ cursId }) => {
-  // const {data: courses, isLoading} = useGetCoursesQuery()
-  // const [fetchGetCourses, { data: courses, isLoading }] =
-  //   useLazyGetCoursesQuery()
-
-  // let currCurs
-  // useEffect(() => {
-  //   fetchGetCourses()
-  //     .unwrap()
-  //     .then(() => {
-  //       console.log('courses', courses)
-  //       currCurs = courses.find((curs) => curs._id === cursId)
-  //       console.log('currCurs', currCurs)
-  //     })
-  //     .catch((error) => {
-  //       console.log('error', error.message)
-  //     })
-  // }, [courses])
-
-  // const currentCurs = Curses.find((curs) => curs.id === cursId)
-
-  // console.log('currentCurs', currentCurs);
-
+ 
   const [isLoading, setIsLoading] = useState(true)
   const [currentCurs, setCurrentCurs] = useState({})
 
-  useEffect(() => {
+useEffect(() => {
     const courseRef = ref(db)
     get(child(courseRef, `courses/`))
       .then((snapshot) => {
