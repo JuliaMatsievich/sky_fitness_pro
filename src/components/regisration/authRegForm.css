@@ -4,7 +4,6 @@
     margin-left: 140px;
     margin-right: 140px;
     width: 23rem;
-    height: 27rem;
     display: flex;
     flex-flow: column;
     gap: 2.5rem;
@@ -56,6 +55,10 @@
     font-size: 1.25rem;
 }
 
+.authorization-form__input:invalid {
+    background-color: red;
+  }
+
 .authorization-form__buttons {
     display: flex;
     flex-flow: column;
@@ -63,6 +66,7 @@
 }
 
 .authorization-form__button {
+    margin-bottom: 10px;
     width: 278px;
     height: 52px;
     flex-shrink: 0;
@@ -105,4 +109,10 @@
     position: absolute;
     left: 50px;
     top: 30px;
+}
+
+.authorization-form_error {
+    display: flex;
+    justify-content: center;
+    color: red;
 }

@@ -4,7 +4,7 @@
     height: 554px;
 }
 
-.my-progress__close {
+.close-button {
     position: absolute;
     z-index: 999;
     top: 0px;
@@ -12,16 +12,10 @@
     padding: 10px;
 }
 
-.my-progress__close_btn {
+.close-button_icon {
     display: flex;
     align-items: center;
     justify-content: center;
-    cursor: pointer;
-}
-
-.my-progress__close-png {
-    width: 20px;
-    height: 20px;
     cursor: pointer;
 }
 

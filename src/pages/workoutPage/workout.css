@@ -175,9 +175,3 @@
     align-items: center;
     justify-content: center;
 }
-
-.my-progress_complete {
-    position: relative;
-    width: 444px;
-    height: 444px;
-}
