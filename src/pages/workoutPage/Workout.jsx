@@ -3,9 +3,10 @@ import './workout.css'
 import { Header } from '../../components/header/header'
 import { MyProgress } from '../../components/myProgress/Myprogress'
 
-let data
+import { db } from '../../firebase'
+import { ref, child, get } from 'firebase/database'
 
-export const WorkoutPage = () => {
+export const WorkoutComponent = ({ workoutId }) => {
   const [isProgressPop, setIsProgressPop] = useState(false)
   const [isProgressFilled, setIsProgressFilled] = useState(false)
 
@@ -28,6 +29,32 @@ export const WorkoutPage = () => {
     }, 2000)
   }, [isProgressFilled])
 
+  const [currentWorkout, setCurrentWorkout] = useState({})
+
+  useEffect(() => {
+    const workoutRef = ref(db)
+    get(child(workoutRef, 'workouts/'))
+      .then((snapshot) => {
+        if (snapshot.exists()) {
+          const workouts = Object.values(snapshot.val())
+          const data = workouts?.find((workout) => workout._id === workoutId)
+          setCurrentWorkout(data)
+        } else {
+          console.log('No data')
+        }
+      })
+      .catch((error) => {
+        console.error(error)
+      })
+  }, [currentWorkout])
+
+  let exercises
+  if (currentWorkout) {
+    if (currentWorkout.trains) {
+      exercises = Object.values(currentWorkout.trains).map((elem) => elem)
+    }
+  }
+
   return (
     <div className="workout__container">
       <Header />
@@ -38,14 +65,13 @@ export const WorkoutPage = () => {
               <div className="workout__section">
                 <h1 className="workout__title">Йога</h1>
               </div>
-              <span> Красота и здоровье / Йога на каждый день / 2 день</span>
+              <span>{currentWorkout?.name}</span>
             </div>
 
             <iframe
               width="1160"
               height="639"
-              src="https://www.youtube.com/embed/OjqPk3FDZLs"
-              title="КАЖДАЯ ЖЕНЩИНА ДОЛЖНАЯ ДЕЛАТЬ ЭТИ 3 УПРАЖНЕНИЯ!"
+              src={currentWorkout?.video}
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen
@@ -55,9 +81,12 @@ export const WorkoutPage = () => {
               <div className="workout-description">
                 <p>Упражнения</p>
                 <ul>
-                  <li>Наклон вперед (10 повторений)</li>
-                  <li>Наклон назад (10 повторений)</li>
-                  <li>Поднятие ног, согнутых в коленях (5 повторений)</li>
+                  {currentWorkout.trains &&
+                    exercises?.map((ex) => (
+                      <li
+                        key={ex._id}
+                      >{`${ex.name} (${ex.max} повторений)`}</li>
+                    ))}
                 </ul>
                 <button onClick={fillProgress} className="btn-purple">
                   Заполнить свой прогресс
@@ -65,9 +94,23 @@ export const WorkoutPage = () => {
               </div>
 
               <div className="workout-progress">
-                <p>Мой прогресс по тренировке 2:</p>
+                <p>Мой прогресс по тренировке:</p>
 
-                <div className="workout-progress__rate">
+                {currentWorkout.trains &&
+                  exercises?.map((ex) => (
+                    <div className="workout-progress__rate" key={ex._id}>
+                      <span>{ex.name}</span>
+                      <div className="workout-show__progress">
+                        <div className="workout-progress_button button_first">
+                          <div className="workout-progress_bar bar_first">
+                            <span>45%</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+
+                {/* <div className="workout-progress__rate">
                   <span>Наклоны вперед</span>
                   <div className="workout-show__progress">
                     <div className="workout-progress_button button_first">
@@ -98,7 +141,7 @@ export const WorkoutPage = () => {
                       </div>
                     </div>
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
@@ -107,24 +150,26 @@ export const WorkoutPage = () => {
           <div className="workout-progress_popup">
             <MyProgress
               setIsProgressFilled={setIsProgressFilled}
+              exercises={exercises}
               closePopup={closePopup}
             />
           </div>
         ) : null}
         {isProgressFilled ? (
           <div className="workout-progress_popup">
+            <img src="img/progress-complete.png" alt="" />
             <div className="my-progress_complete">
               <div className="my-progress__close">
                 <div className="my-progress__close_btn">
                   <img
-                    src="img/close.png"
+                    src="/img/close.png"
                     alt="close"
                     className="my-progress__close-png"
                     onClick={closePopup}
                   />
                 </div>
               </div>
-              <img src="img/progress-complete.png" alt="progress" />
+              <img src="/img/progress-complete.png" alt="progress" />
             </div>
           </div>
         ) : null}

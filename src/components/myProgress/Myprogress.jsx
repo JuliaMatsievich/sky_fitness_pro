@@ -2,17 +2,18 @@ import React from 'react'
 import './myprogress.css'
 import { myProgress } from '../../constants/myProgressConst'
 
-export const MyProgress = ({ setIsProgressFilled, closePopup }) => {
+export const MyProgress = ({ setIsProgressFilled, closePopup, exercises }) => {
   const fillProgressComplete = () => {
     setIsProgressFilled(true)
   }
+
 
   return (
     <div className="my-progress">
       <div className="my-progress__close">
         <div className="my-progress__close_btn">
           <img
-            src="img/close.png"
+            src="/img/close.png"
             alt="close"
             className="my-progress__close-png"
             onClick={closePopup}
@@ -23,9 +24,9 @@ export const MyProgress = ({ setIsProgressFilled, closePopup }) => {
       <div className="my-progress__description">
         <span>Мой прогресс</span>
 
-        {myProgress.map((progress) => (
-          <div className="my-progress__description_text" key={progress.id}>
-            <label className="exercise-description">{progress.text}</label>
+        {exercises?.map((progress) => (
+          <div className="my-progress__description_text" key={progress._id}>
+            <label className="exercise-description">{progress.name}</label>
             <input
               type="number"
               className="exercise-number"

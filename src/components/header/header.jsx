@@ -21,16 +21,16 @@ export const Header = ({ namePage }) => {
         <div className="header__wrapper">
           <Link to="/">
             {namePage === MAIN_PAGE ? (
-              <img className="header__logo" src="./img/logo.svg" alt="" />
+              <img className="header__logo" src="/img/logo.svg" alt="" />
             ) : (
-              <img className="header__logo" src="./img/logo-black.svg" alt="" />
+              <img className="header__logo" src="/img/logo-black.svg" alt="" />
             )}
           </Link>
           {isUser ? (
             <div onClick={openMenuProfile} className="header-profileInfo">
               <img
                 className="header-photo"
-                src="./img/photoProfile.svg"
+                src="/img/photoProfile.svg"
                 alt=""
               />
               {namePage === MAIN_PAGE ? (
@@ -43,7 +43,7 @@ export const Header = ({ namePage }) => {
             ) : (
               <img
                 className="header-settingsProfile"
-                src="./img/settingsProfile.svg"
+                src="/img/settingsProfile.svg"
                 alt=""
               />
             )}

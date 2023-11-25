@@ -3,7 +3,7 @@ import './profile.css'
 import { NewLogin } from '../newLogin/newLogin';
 import { NewPassword } from '../newPassword/newPassword';
 import { useEffect } from 'react';
-import Workout from '../workout/workout';
+import WorkoutList from '../workout/workout';
 import { Header } from '../header/header';
 import { PROFILE_PAGE } from '../../constants/pagesСonst';
 
@@ -104,7 +104,7 @@ export function Profile() {
         <NewPassword/>
       )}
       {isShowWorkout && (
-        <Workout/>
+        <WorkoutList/>
       )}
     </div>
     </>
