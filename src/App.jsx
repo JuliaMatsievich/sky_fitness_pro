@@ -1,14 +1,11 @@
 import './App.css'
 import { AppRoutes } from './routes'
 import { createContext, useState } from 'react'
-// import { firestore } from './firebase'
-export const UserContext = createContext(null)
+export const UserContext = createContext(null);
 
 function App() {
-  const [isUser, setIsUser] = useState(true)
-
-  // console.log(firestore.collection('courses').get())
-
+  const [isUser, setIsUser] = useState(true);
+  
   return (
     <>
       <UserContext.Provider value={{ isUser, setIsUser }}>

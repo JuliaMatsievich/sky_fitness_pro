@@ -1,6 +1,5 @@
 import React from 'react'
 import './myprogress.css'
-import { myProgress } from '../../constants/myProgressConst'
 
 export const MyProgress = ({ setIsProgressFilled, closePopup, exercises }) => {
   const fillProgressComplete = () => {

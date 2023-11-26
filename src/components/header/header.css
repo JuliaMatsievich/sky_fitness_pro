@@ -111,6 +111,7 @@
     width: 100%;
     transition: height 0.3s ease-in-out 0s;
     height: 0rem;
+    z-index: 99;
 }
 
 .header-profile-div {

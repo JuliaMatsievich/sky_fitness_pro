@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import './workout.css'
 import { Header } from '../../components/header/header'
 import { MyProgress } from '../../components/myProgress/Myprogress'
+import { useNavigate } from 'react-router-dom'
 
 import { db } from '../../firebase'
 import { ref, child, get } from 'firebase/database'
@@ -9,6 +10,16 @@ import { ref, child, get } from 'firebase/database'
 export const WorkoutComponent = ({ workoutId }) => {
   const [isProgressPop, setIsProgressPop] = useState(false)
   const [isProgressFilled, setIsProgressFilled] = useState(false)
+  const [visible, setVisible] = useState(false);
+
+  const push = useNavigate();
+  useEffect(() => {
+    if (localStorage.getItem('userName')) {
+      setVisible(true);
+    } else {
+      push('/auth');
+    }
+  }, [])
 
   const fillProgress = () => {
     setIsProgressPop(true)
@@ -57,7 +68,9 @@ export const WorkoutComponent = ({ workoutId }) => {
 
   return (
     <div className="workout__container">
-      <Header />
+      {visible && (
+        <div>
+          <Header />
       <div className="wrapper">
         <div className="container">
           <div className="workout">
@@ -157,7 +170,6 @@ export const WorkoutComponent = ({ workoutId }) => {
         ) : null}
         {isProgressFilled ? (
           <div className="workout-progress_popup">
-            <img src="img/progress-complete.png" alt="" />
             <div className="my-progress_complete">
               <div className="my-progress__close">
                 <div className="my-progress__close_btn">
@@ -174,6 +186,8 @@ export const WorkoutComponent = ({ workoutId }) => {
           </div>
         ) : null}
       </div>
-    </div>
+        </div>
+      )}     
+    </div>  
   )
 }
