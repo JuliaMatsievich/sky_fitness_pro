@@ -2,7 +2,7 @@ import { Route, Routes } from 'react-router-dom'
 import { MainPage } from './pages/main/MainPage'
 import { CursPage } from './pages/cursPage/cursPage'
 import { ProfilePage } from './pages/profile/ProfilePage'
-import { WorkoutPage } from './pages/workoutPage/Workout'
+import { WorkoutPage } from './pages/workoutPage/workoutPage'
 import { ProtectedRoute } from './components/protedcted-route'
 import { useContext } from 'react'
 import { UserContext } from './App'
@@ -15,13 +15,14 @@ export const AppRoutes = () => {
   return (
     <Routes>
       <Route path="/" element={<MainPage />} />
-      <Route path="/curs" element={<CursPage />} />
+      <Route path="/curs/:id" element={<CursPage />} />
       <Route element={<ProtectedRoute isAllowed={Boolean(isUser)} />}>
         <Route path="/profile" element={<ProfilePage />} />
-        <Route path='/workout' element={<WorkoutPage />}/>
+        <Route path='/workout/:id' element={<WorkoutPage />}/>
       </Route>
       <Route path='/auth' element={<AuthPage />} />
       <Route path='/reg' element={<RegPage />} />
     </Routes>
   )
 }
+

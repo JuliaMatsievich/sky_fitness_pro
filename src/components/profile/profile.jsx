@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import './profile.css'
-import { NewLogin } from '../newLogin/newLogin'
-import { NewPassword } from '../newPassword/newPassword'
-import { useEffect } from 'react'
-import Workout from '../workout/workout'
-import { Header } from '../header/header'
-import { PROFILE_PAGE } from '../../constants/pagesСonst'
+import { NewLogin } from '../newLogin/newLogin';
+import { NewPassword } from '../newPassword/newPassword';
+import { useEffect } from 'react';
+import WorkoutList from '../workout/workout';
+import { Header } from '../header/header';
+import { PROFILE_PAGE } from '../../constants/pagesСonst';
 import { useNavigate } from 'react-router-dom'
 
 let data
@@ -19,6 +19,7 @@ export function Profile() {
   const [yourName, setYourName] = useState('');
   const [yourPassword, setYourPassword] = useState('');
   const [visible, setVisible] = useState(false)
+
   useEffect(() => {
     if (localStorage.getItem('userName')) {
       setVisible(true)
@@ -145,7 +146,7 @@ export function Profile() {
 
             {isShowLogin && <NewLogin />}
             {isShowPassword && <NewPassword />}
-            {isShowWorkout && <Workout />}
+            {isShowWorkout && <WorkoutList />}
           </div>
         </div>
       )}
