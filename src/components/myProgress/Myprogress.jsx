@@ -6,7 +6,6 @@ export const MyProgress = ({ setIsProgressFilled, closePopup, exercises }) => {
     setIsProgressFilled(true)
   }
 
-
   return (
     <div className="my-progress">
       <div className="my-progress__close">
