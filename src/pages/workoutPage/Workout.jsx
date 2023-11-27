@@ -71,123 +71,100 @@ export const WorkoutComponent = ({ workoutId }) => {
       {visible && (
         <div>
           <Header />
-      <div className="wrapper">
-        <div className="container">
-          <div className="workout">
-            <div className="workout__info">
-              <div className="workout__section">
-                <h1 className="workout__title">Йога</h1>
-              </div>
-              <span>{currentWorkout?.name}</span>
-            </div>
+          <div className="wrapper">
+            <div className="container">
+              <div className="workout">
+                <div className="workout__info">
+                  <div className="workout__section">
+                    <h1 className="workout__title">Йога</h1>
+                  </div>
+                  <span>{currentWorkout?.name}</span>
+                </div>
 
-            <iframe
-              width="1160"
-              height="639"
-              src={currentWorkout?.video}
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowFullScreen
-            ></iframe>
+                <iframe
+                  width="1160"
+                  height="639"
+                  src={currentWorkout?.video}
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                ></iframe>
 
-            <div className="workout-exercises">
-              <div className="workout-description">
-                <p>Упражнения</p>
-                <ul>
-                  {currentWorkout.trains &&
-                    exercises?.map((ex) => (
-                      <li
-                        key={ex._id}
-                      >{`${ex.name} (${ex.max} повторений)`}</li>
-                    ))}
-                </ul>
-                <button onClick={fillProgress} className="btn-purple">
-                  Заполнить свой прогресс
-                </button>
-              </div>
+                <div className="workout-exercises">
+                  <div className="workout-description">
+                    <p>Упражнения</p>
+                    <ul>
+                      {currentWorkout.trains &&
+                        exercises?.map((ex) => (
+                          <li
+                            key={ex._id}
+                          >{`${ex.name} (${ex.max} повторений)`}</li>
+                        ))}
+                    </ul>
+                    <button onClick={fillProgress} className="btn-purple">
+                      Заполнить свой прогресс
+                    </button>
+                  </div>
 
-              <div className="workout-progress">
-                <p>Мой прогресс по тренировке:</p>
+                  <div className="workout-progress">
+                    <p>Мой прогресс по тренировке:</p>
 
-                {currentWorkout.trains &&
-                  exercises?.map((ex) => (
-                    <div className="workout-progress__rate" key={ex._id}>
-                      <span>{ex.name}</span>
-                      <div className="workout-show__progress">
-                        <div className="workout-progress_button button_first">
-                          <div className="workout-progress_bar bar_first">
-                            <span>45%</span>
+                    {currentWorkout.trains &&
+                      exercises?.map((ex) => (
+                        <div className="workout-progress__rate" key={ex._id}>
+                          <span>{ex.name}</span>
+                          <div className="workout-show__progress">
+                            <div
+                              className="workout-progress_button button_first"
+                              style={{
+                                border: `2px solid ${ex.progress_color}`,
+                              }}
+                            >
+                              <div
+                                className="workout-progress_bar bar_first"
+                                style={{
+                                  background: `${ex.progress_color}`,
+                                }}
+                              >
+                                <span>45%</span>
+                              </div>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    </div>
-                  ))}
-
-                {/* <div className="workout-progress__rate">
-                  <span>Наклоны вперед</span>
-                  <div className="workout-show__progress">
-                    <div className="workout-progress_button button_first">
-                      <div className="workout-progress_bar bar_first">
-                        <span>45%</span>
-                      </div>
-                    </div>
+                      ))}
                   </div>
                 </div>
-
-                <div className="workout-progress__rate">
-                  <span>Наклоны назад</span>
-                  <div className="workout-show__progress">
-                    <div className="workout-progress_button button_second">
-                      <div className="workout-progress_bar bar_second">
-                        <span>45%</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="workout-progress__rate">
-                  <span>Поднятие ног, согнутых в коленях</span>
-                  <div className="workout-show__progress">
-                    <div className="workout-progress_button button_third">
-                      <div className="workout-progress_bar bar_third">
-                        <span>45%</span>
-                      </div>
-                    </div>
-                  </div>
-                </div> */}
               </div>
             </div>
-          </div>
-        </div>
-        {isProgressPop && !isProgressFilled ? (
-          <div className="workout-progress_popup">
-            <MyProgress
-              setIsProgressFilled={setIsProgressFilled}
-              exercises={exercises}
-              closePopup={closePopup}
-            />
-          </div>
-        ) : null}
-        {isProgressFilled ? (
-          <div className="workout-progress_popup">
-            <div className="my-progress_complete">
-              <div className="my-progress__close">
-                <div className="my-progress__close_btn">
-                  <img
-                    src="/img/close.png"
-                    alt="close"
-                    className="my-progress__close-png"
-                    onClick={closePopup}
-                  />
+            {isProgressPop && !isProgressFilled ? (
+              <div className="workout-progress_popup">
+                <MyProgress
+                  setIsProgressFilled={setIsProgressFilled}
+                  exercises={exercises}
+                  closePopup={closePopup}
+                />
+              </div>
+            ) : null}
+            {isProgressFilled ? (
+              <div className="workout-progress_popup">
+                <div className="my-progress_complete">
+                  <div className="my-progress__close">
+                    <div className="my-progress__close_btn">
+                      <img
+                        src="/img/close.png"
+                        alt="close"
+                        className="my-progress__close-png"
+                        onClick={closePopup}
+                      />
+                    </div>
+                  </div>
+                  <img src="/img/progress-complete.png" alt="progress" />
                 </div>
               </div>
-              <img src="/img/progress-complete.png" alt="progress" />
-            </div>
+            ) : null}
           </div>
-        ) : null}
-      </div>
         </div>
-      )}     
-    </div>  
+      )}
+    </div>
   )
 }

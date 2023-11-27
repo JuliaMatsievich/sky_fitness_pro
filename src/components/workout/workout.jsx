@@ -1,10 +1,28 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import './workout.css'
 import { closeWindow } from '../profile/profile';
 import { Link } from 'react-router-dom'
-import { workouts } from '../../constants/workoutsConst';
+import { db } from '../../firebase'
+import { ref, child, get } from 'firebase/database'
 
 function WorkoutList() {
+  const [workouts, setWorkouts] = useState('')
+  useEffect(() => {
+    const workoutRef = ref(db)
+    get(child(workoutRef, 'workouts/'))
+      .then((snapshot) => {
+        if (snapshot.exists()) {
+          const data = Object.values(snapshot.val())
+          setWorkouts(data)
+        } else {
+          console.log('No data')
+        }
+      })
+      .catch((error) => {
+        console.error(error)
+      })
+  }, [workouts])
+
   return (
     <div className="for__profile">
       <img
@@ -16,9 +34,9 @@ function WorkoutList() {
       <div className="main-workout">
         <h1 className="main-h1__workout">Выберите тренировку</h1>
         <div className="main-div__workout">
-          {workouts?.map((workout) => (
-            <div key={workout.id}>
-              <Link to={`/workout/${workout.id}`}>
+          {workouts && workouts?.map((workout) => (
+            <div key={workout._id}>
+              <Link to={`/workout/${workout._id}`}>
                 <div className="main-tasks">
                   <h2 className="main-tasks-h2 main-tasks_h2__help">
                    {workout.name}
