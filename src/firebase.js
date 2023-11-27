@@ -1,8 +1,10 @@
 import { initializeApp } from "firebase/app";
+import { getFirestore } from 'firebase/firestore/lite';
+import { getDatabase, ref, child, get } from "firebase/database";
+import { set } from "firebase/database";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
-// import 'firebase/firestore';
-import { getDatabase} from "firebase/database";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDqa4cOzW_N8OKaxBptQb_PqSBYbP0XN6U",
@@ -18,3 +20,8 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 export const db = getDatabase(app);
 
+export const auth = getAuth(app);
+
+export function getInfo() {
+  getAuth(app);
+}
