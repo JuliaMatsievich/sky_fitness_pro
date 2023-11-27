@@ -22,6 +22,36 @@ export const WorkoutPage = () => {
     setIsProgressFilled(false)
   }
 
+  const [progress1, setProgress1] = useState('');
+  const [progress2, setProgress2] = useState('');
+  const [progress3, setProgress3] = useState('');
+
+  useEffect(() => {
+      if (localStorage.getItem('inputForWorkout1') > 10) {
+        setProgress1(10);
+      } else {
+        setProgress1(localStorage.getItem('inputForWorkout1'));
+      }
+
+      if (localStorage.getItem('inputForWorkout2') > 10) {
+        setProgress2(10);
+      } else {
+        setProgress2(localStorage.getItem('inputForWorkout2'));
+      }
+
+      if (localStorage.getItem('inputForWorkout1') > 10) {
+        setProgress1(10);
+      } else {
+        setProgress1(localStorage.getItem('inputForWorkout1'));
+      }
+
+      if (localStorage.getItem('inputForWorkout3') > 10) {
+        setProgress3(10);
+      } else {
+        setProgress3(localStorage.getItem('inputForWorkout3'));
+      }
+  })
+
   useEffect(() => {
     setTimeout(() => {
       if (isProgressFilled) {
@@ -74,8 +104,8 @@ export const WorkoutPage = () => {
                     <span>Наклоны вперед</span>
                     <div className="workout-show__progress">
                       <div className="workout-progress_button button_first">
-                        <div className="workout-progress_bar bar_first">
-                          <span>45%</span>
+                        <div className="workout-progress_bar bar_first" style={{width: `${progress1*10}` + '%'}}>
+                          <span>{progress1*10}%</span>
                         </div>
                       </div>
                     </div>
@@ -85,8 +115,8 @@ export const WorkoutPage = () => {
                     <span>Наклоны назад</span>
                     <div className="workout-show__progress">
                       <div className="workout-progress_button button_second">
-                        <div className="workout-progress_bar bar_second">
-                          <span>45%</span>
+                        <div className="workout-progress_bar bar_second" style={{width: `${progress2*10}` + '%'}}>
+                          <span>{progress2*10}%</span>
                         </div>
                       </div>
                     </div>
@@ -96,8 +126,8 @@ export const WorkoutPage = () => {
                     <span>Поднятие ног, согнутых в коленях</span>
                     <div className="workout-show__progress">
                       <div className="workout-progress_button button_third">
-                        <div className="workout-progress_bar bar_third">
-                          <span>45%</span>
+                        <div className="workout-progress_bar bar_third" style={{width: `${progress3*10}` + '%'}}>
+                          <span>{progress3*10}%</span>
                         </div>
                       </div>
                     </div>

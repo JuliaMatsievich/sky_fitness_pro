@@ -1,10 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './myprogress.css'
 
 export const MyProgress = ({ setIsProgressFilled }) => {
   const fillProgressComplete = () => {
-    setIsProgressFilled(true)
+    setIsProgressFilled(true);
+    localStorage.setItem('inputForWorkout1', inputForWorkout1);
+    localStorage.setItem('inputForWorkout2', inputForWorkout2);
+    localStorage.setItem('inputForWorkout3', inputForWorkout3);
   }
+  const [inputForWorkout1, setInputForWorkout1] = useState('');
+  const [inputForWorkout2, setInputForWorkout2] = useState('');
+  const [inputForWorkout3, setInputForWorkout3] = useState('');
 
   return (
     <div className="my-progress">
@@ -18,6 +24,8 @@ export const MyProgress = ({ setIsProgressFilled }) => {
             type="number"
             className="exercise-number"
             placeholder="Введите значение"
+            value={inputForWorkout1}
+            onChange={(event) => setInputForWorkout1(event.target.value)}
           />
         </div>
 
@@ -29,6 +37,8 @@ export const MyProgress = ({ setIsProgressFilled }) => {
             type="number"
             className="exercise-number"
             placeholder="Введите значение"
+            value={inputForWorkout2}
+            onChange={(event) => setInputForWorkout2(event.target.value)}
           />
         </div>
 
@@ -40,6 +50,8 @@ export const MyProgress = ({ setIsProgressFilled }) => {
             type="number"
             className="exercise-number"
             placeholder="Введите значение"
+            value={inputForWorkout3}
+            onChange={(event) => setInputForWorkout3(event.target.value)}
           />
         </div>
         <button type="submit" className="submit-button btn-purple" onClick={fillProgressComplete}>
