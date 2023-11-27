@@ -1,5 +1,7 @@
 import './curs.css'
 import { useEffect, useState } from 'react'
+import { ref, child, get } from 'firebase/database'
+import { db } from '../../firebase'
 
 export const Curs = ({ cursId }) => {
  
