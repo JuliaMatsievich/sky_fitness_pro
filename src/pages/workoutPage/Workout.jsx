@@ -52,7 +52,6 @@ export const WorkoutComponent = ({ workoutId }) => {
           const workouts = Object.values(snapshot.val())
           const data = workouts?.find((workout) => workout._id === workoutId)
           setCurrentWorkout(data)
-          // console.log('currentWorkout', currentWorkout);
         } else {
           console.log('No data')
         }
@@ -73,13 +72,7 @@ export const WorkoutComponent = ({ workoutId }) => {
         const data = userCourses?.find(
           (usercourse) => usercourse.id === workoutId,
         )
-        // console.log('users', users);
-        // console.log('currentUser', currentUser);
-        // console.log('userCourses',userCourses);
-        // console.log('data', data);
         setUserWorkout(data)
-        // const userExercises = Object.values(userWorkout).filter(elem => elem != workoutId)
-        // console.log('userExercises', userExercises);
       }
     })
   }, [userWorkout])
