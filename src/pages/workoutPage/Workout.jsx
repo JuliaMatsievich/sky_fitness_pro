@@ -142,6 +142,7 @@ export const WorkoutComponent = ({ workoutId }) => {
                   setIsProgressFilled={setIsProgressFilled}
                   exercises={exercises}
                   closePopup={closePopup}
+                  currentWorkout={currentWorkout}
                 />
               </div>
             ) : null}

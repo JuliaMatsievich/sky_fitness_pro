@@ -1,14 +1,26 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import './myprogress.css'
-import { ref, set } from 'firebase/database'
+import { ref, set, child, push } from 'firebase/database'
 import { db } from '../../firebase'
+import { useForm } from 'react-hook-form'
 
-export const MyProgress = ({ setIsProgressFilled, closePopup, exercises }) => {
+export const MyProgress = ({ setIsProgressFilled, closePopup, exercises, currentWorkout }) => {
   const fillProgressComplete = () => {
+    // if (value) {
+    //   writeUserProgress(userName, value, exId)
+    // }
+    console.log('userProgress', userProgress);
     setIsProgressFilled(true)
   }
 
-  const [valueAndMax, setValueAndMax] = useState({})
+  const {register, handleSubmit} = useForm()
+  const [userProgress, setUserProgress] = useState([])
+  const [value, setValue] = useState('')
+  const inputRef = useRef(null)
+
+  const onSubmit = data => {
+    console.log('data', data);
+  }
 
   const getProcentProgress = (value, max) => {
     const procentProgress = Math.round((value * 100) / max)
@@ -17,23 +29,20 @@ export const MyProgress = ({ setIsProgressFilled, closePopup, exercises }) => {
 
   const userName = localStorage.getItem('userName')
 
-  function writeUserProgress(userName, value, exerciciseId) {
-    set(
-      ref(
-        db,
-        `/workouts/${workoutId}/trains/${exerciciseId}/users/${userName}`,
-      ),
+  function writeUserProgress(userName, value, exId) {
+    const workoutRef = ref(db, `workouts/${currentWorkout._id}/trains/${exId}/users`)
+    push(workoutRef, 
       {
+        userName: userName,
         value: value,
       },
     )
   }
 
-  useEffect(() => {
-    workoutId = "wy2"
-    exerciciseId = "wy2tr1"
-    writeUserProgress(userName, valueAndMax.value, exerciciseId)
-  }, [valueAndMax])
+  function handleChange(e,exId) {
+    setUserProgress([...userProgress,{exId: exId, value:  e.target.value}])
+}
+
 
   return (
     <div className="my-progress">
@@ -50,7 +59,7 @@ export const MyProgress = ({ setIsProgressFilled, closePopup, exercises }) => {
 
       <div className="my-progress__description">
         <span>Мой прогресс</span>
-
+        {/* <form onSubmit={handleSubmit(onSubmit)}> */}
         {exercises?.map((progress) => (
           <div className="my-progress__description_text" key={progress._id}>
             <label className="exercise-description">{progress.name}</label>
@@ -58,12 +67,11 @@ export const MyProgress = ({ setIsProgressFilled, closePopup, exercises }) => {
               type="number"
               className="exercise-number"
               placeholder="Введите значение"
-              onChange={(e) =>
-                setValueAndMax({ value: e.target.value, max: progress.max })
-              }
+              // {...register('name')}
+              onChange={(e) => handleChange(e,progress._id)}
             />
           </div>
-        ))}
+         ))} 
 
         <button
           type="submit"
@@ -72,6 +80,7 @@ export const MyProgress = ({ setIsProgressFilled, closePopup, exercises }) => {
         >
           Отправить
         </button>
+        {/* </form> */}
       </div>
     </div>
   )
