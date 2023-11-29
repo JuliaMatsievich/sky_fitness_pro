@@ -20,6 +20,7 @@ export function Authorization() {
     const user = userCredential.user;
     localStorage.setItem('userName', user.email);
     localStorage.setItem('userPassword', password);
+    localStorage.setItem('uid',auth.currentUser.uid)
     console.log(user);
     push('/');
     // ...

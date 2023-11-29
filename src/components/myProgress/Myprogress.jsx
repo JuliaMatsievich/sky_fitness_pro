@@ -3,46 +3,118 @@ import './myprogress.css'
 import { ref, set, child, push } from 'firebase/database'
 import { db } from '../../firebase'
 import { useForm } from 'react-hook-form'
+import { InputProgress } from '../inputProgress/inputProgress'
 
-export const MyProgress = ({ setIsProgressFilled, closePopup, exercises, currentWorkout }) => {
+export const MyProgress = ({
+  setIsProgressFilled,
+  closePopup,
+  exercises,
+  currentWorkout,
+}) => {
+
+  const userName = localStorage.getItem('userName')
+  const userId  = localStorage.getItem('uid')
+
   const fillProgressComplete = () => {
     // if (value) {
     //   writeUserProgress(userName, value, exId)
     // }
-    console.log('userProgress', userProgress);
+    console.log('userProgress', userProgress)
+    console.log('value', value)
+    writeUserProgress(userId, userName)
     setIsProgressFilled(true)
   }
+  
 
-  const {register, handleSubmit} = useForm()
   const [userProgress, setUserProgress] = useState([])
-  const [value, setValue] = useState('')
-  const inputRef = useRef(null)
+  const [value, setValue] = useState(Array(0))
 
-  const onSubmit = data => {
-    console.log('data', data);
+
+  const onSubmit = (data) => {
+    console.log('data', data)
+    
   }
+  
+const writeUserProgress= (userId, userName) => {
+  set(ref(db, 'users/' + userId), {
+    username: userName,
+    courses: {
+      wy: {
+        wy1: {
+          wytr1: {
+            max: 10,
+            userValue: 10
+          }
+        },
+        wy2: {
+          wy2tr1: {
+            max: 10,
+            userValue: 0
+          },
+          wy2tr2: {
+            max: 10,
+            userValue: 0
+          },
+          wy3tr3: {
+            max: 5,
+            userValue: 0
+          }
+        },
+        wy3: {
+          wy3tr1: {
+            max: 10,
+            userValue: 0
+          },
+          wy3tr2: {
+            max: 10,
+            userValue: 0
+          },
+          wy3tr3: {
+            max: 10,
+            userValue: 0
+          },
+          wy3tr4: {
+            max: 10,
+            userValue: 0
+          },
+          wy3tr5: {
+            max: 5,
+            userValue: 0
+          }
+        },
+        wy4: {
+          wy4tr1: {
+            max: 10,
+            userValue: 0
+          },
+          wy4tr2: {
+            max: 20,
+            userValue: 0
+          },
+          wy4tr3: {
+            max: 20,
+            userValue: 0
+          }
+        }
+      }
+    }
+  });
+}
 
-  const getProcentProgress = (value, max) => {
+const getProcentProgress = (value, max) => {
     const procentProgress = Math.round((value * 100) / max)
     return procentProgress
   }
 
-  const userName = localStorage.getItem('userName')
-
-  function writeUserProgress(userName, value, exId) {
-    const workoutRef = ref(db, `workouts/${currentWorkout._id}/trains/${exId}/users`)
-    push(workoutRef, 
-      {
-        userName: userName,
-        value: value,
-      },
-    )
+function handleChange(e, exId) {
+    const value  = e.target.value
+    setValue((prevState) => ({
+      ...prevState,
+      [exId]: value,
+    }))
+    // setValue(value)
+    // setUserProgress([...userProgress, { exId: exId, value: e.target.value }])
   }
-
-  function handleChange(e,exId) {
-    setUserProgress([...userProgress,{exId: exId, value:  e.target.value}])
-}
-
 
   return (
     <div className="my-progress">
@@ -60,18 +132,22 @@ export const MyProgress = ({ setIsProgressFilled, closePopup, exercises, current
       <div className="my-progress__description">
         <span>Мой прогресс</span>
         {/* <form onSubmit={handleSubmit(onSubmit)}> */}
-        {exercises?.map((progress) => (
+        {exercises?.map((progress, index) => (
           <div className="my-progress__description_text" key={progress._id}>
             <label className="exercise-description">{progress.name}</label>
-            <input
+            {/* <input
               type="number"
               className="exercise-number"
               placeholder="Введите значение"
               // {...register('name')}
               onChange={(e) => handleChange(e,progress._id)}
-            />
+            /> */}
+            <InputProgress
+              handleChange={handleChange}
+              progress={progress}
+             />
           </div>
-         ))} 
+        ))}
 
         <button
           type="submit"
