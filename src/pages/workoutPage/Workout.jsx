@@ -10,14 +10,14 @@ import { ref, child, get } from 'firebase/database'
 export const WorkoutComponent = ({ workoutId }) => {
   const [isProgressPop, setIsProgressPop] = useState(false)
   const [isProgressFilled, setIsProgressFilled] = useState(false)
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState(false)
 
-  const push = useNavigate();
+  const push = useNavigate()
   useEffect(() => {
     if (localStorage.getItem('userName')) {
-      setVisible(true);
+      setVisible(true)
     } else {
-      push('/auth');
+      push('/auth')
     }
   }, [])
 
@@ -44,7 +44,6 @@ export const WorkoutComponent = ({ workoutId }) => {
   const [userWorkout, setUserWorkout] = useState({})
   const userName = localStorage.getItem('userName')
 
-
   useEffect(() => {
     const workoutRef = ref(db)
     get(child(workoutRef, 'workouts/'))
@@ -53,7 +52,7 @@ export const WorkoutComponent = ({ workoutId }) => {
           const workouts = Object.values(snapshot.val())
           const data = workouts?.find((workout) => workout._id === workoutId)
           setCurrentWorkout(data)
-          console.log('currentWorkout', currentWorkout);
+          // console.log('currentWorkout', currentWorkout);
         } else {
           console.log('No data')
         }
@@ -65,21 +64,24 @@ export const WorkoutComponent = ({ workoutId }) => {
 
   useEffect(() => {
     const userRef = ref(db)
-    get(child(userRef,'users/'))
-      .then ((snapshot) => {
-        if (snapshot.exists()) {
-          const users = Object.values(snapshot.val())
-          const currentUser = users?.find((user) => user.username === userName)
-          const userCourses = Object.values(currentUser.courses.wy)
+    get(child(userRef, 'users/')).then((snapshot) => {
+      if (snapshot.exists()) {
+        const users = Object.values(snapshot.val())
+        const currentUser = users?.find((user) => user.username === userName)
+        const userCourses = Object.values(currentUser.courses.wy)
 
-          const data = userCourses?.find((usercourse) => usercourse.id === workoutId)
-          console.log('users', users);
-          console.log('currentUser', currentUser);
-          console.log('userCourses',userCourses);
-          console.log('data', data);
-          setUserWorkout(data)
-        }
-      })
+        const data = userCourses?.find(
+          (usercourse) => usercourse.id === workoutId,
+        )
+        // console.log('users', users);
+        // console.log('currentUser', currentUser);
+        // console.log('userCourses',userCourses);
+        // console.log('data', data);
+        setUserWorkout(data)
+        // const userExercises = Object.values(userWorkout).filter(elem => elem != workoutId)
+        // console.log('userExercises', userExercises);
+      }
+    })
   }, [userWorkout])
 
   let exercises
@@ -87,6 +89,18 @@ export const WorkoutComponent = ({ workoutId }) => {
     if (currentWorkout.trains) {
       exercises = Object.values(currentWorkout.trains).map((elem) => elem)
     }
+  }
+
+  let userExercises
+  if (userWorkout) {
+    userExercises = Object.values(userWorkout).filter(
+      (elem) => elem != workoutId,
+    )
+  }
+
+  const getProcentProgress = (value, max) => {
+    const procentProgress = Math.round((value * 100) / max)
+    return procentProgress
   }
 
   return (
@@ -133,7 +147,7 @@ export const WorkoutComponent = ({ workoutId }) => {
                     <p>Мой прогресс по тренировке:</p>
 
                     {currentWorkout.trains &&
-                      exercises?.map((ex) => (
+                      userExercises?.map((ex) => (
                         <div className="workout-progress__rate" key={ex._id}>
                           <span>{ex.name}</span>
                           <div className="workout-show__progress">
@@ -147,10 +161,10 @@ export const WorkoutComponent = ({ workoutId }) => {
                                 className="workout-progress_bar bar_first"
                                 style={{
                                   background: `${ex.progress_color}`,
-                                  width: '10%'
+                                  width: `${getProcentProgress(ex.userValue, ex.max)}%`,
                                 }}
                               >
-                                <span>45%</span>
+                                <span>{getProcentProgress(ex.userValue, ex.max)}%</span>
                               </div>
                             </div>
                           </div>
