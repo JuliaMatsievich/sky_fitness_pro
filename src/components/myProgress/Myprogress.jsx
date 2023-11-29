@@ -16,19 +16,17 @@ export const MyProgress = ({
   const userId  = localStorage.getItem('uid')
 
   const fillProgressComplete = () => {
-    // if (value) {
-    //   writeUserProgress(userName, value, exId)
+    // if (Object.keys(value).length) {
+    //   writeUserProgress(userId, userName)
+    // } else {
+    //   console.log('pol');
     // }
-    console.log('userProgress', userProgress)
-    console.log('value', value)
-    console.log('v',value.wy2tr1);
+    console.log(value);
     writeUserProgress(userId, userName)
     setIsProgressFilled(true)
   }
-  
 
-  const [userProgress, setUserProgress] = useState([])
-  const [value, setValue] = useState(Array(0))
+  const [value, setValue] = useState([])
 
 
 const writeUserProgress= (userId, userName) => {
@@ -37,57 +35,85 @@ const writeUserProgress= (userId, userName) => {
     courses: {
       wy: {
         wy1: {
+          id: 'wy1',
           wy1tr1: {
+            id: 'wy1tr1',
+            name:'', 
             max: 10,
             userValue: Number(value.wy1tr1) || 0
           }
         },
         wy2: {
+          id: 'wy2',
           wy2tr1: {
+            id: 'wy2tr1',
+            name:'',
             max: 10,
             userValue: Number(value.wy2tr1) || 0
           },
           wy2tr2: {
+            id: 'wy2tr2',
+            name:'',
             max: 10,
             userValue: Number(value.wy2tr2) || 0
           },
           wy2tr3: {
+            id: 'wy2tr3',
+            name:'',
             max: 5,
             userValue: Number(value.wy2tr3) || 0
           }
         },
         wy3: {
+          id: 'wy3',
           wy3tr1: {
+            id: 'wy3tr1',
+            name:'',
             max: 10,
             userValue: Number(value.wy3tr1) || 0
           },
           wy3tr2: {
+            id: 'wy3tr2',
+            name:'',
             max: 10,
             userValue: Number(value.wy3tr2) || 0
           },
           wy3tr3: {
+            id: 'wy3tr3',
+            name:'',
             max: 10,
             userValue: Number(value.wy3tr3) || 0
           },
           wy3tr4: {
+            id: 'wy3tr4',
+            name:'',
             max: 10,
             userValue: Number(value.wy3tr4) || 0
           },
           wy3tr5: {
+            id: 'wy3tr5',
+            name:'',
             max: 5,
             userValue: Number(value.wy3tr5) || 0
           }
         },
         wy4: {
+          id: 'wy4',
           wy4tr1: {
+            id: 'wy4tr1',
+            name:'',
             max: 10,
             userValue: Number(value.wy4tr1) || 0
           },
           wy4tr2: {
+            id: 'wy4tr2',
+            name:'',
             max: 20,
             userValue: Number(value.wy4tr2) || 0
           },
           wy4tr3: {
+            id: 'wy4tr3',
+            name:'',
             max: 20,
             userValue: Number(value.wy4tr3) || 0
           }
@@ -102,7 +128,7 @@ const getProcentProgress = (value, max) => {
     return procentProgress
   }
 
-function handleChange(e, exId) {
+const handleChange = (e, exId) => {
     const value  = e.target.value
     setValue((prevState) => ({
       ...prevState,

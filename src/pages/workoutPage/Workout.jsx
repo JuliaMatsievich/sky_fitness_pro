@@ -41,6 +41,9 @@ export const WorkoutComponent = ({ workoutId }) => {
   }, [isProgressFilled])
 
   const [currentWorkout, setCurrentWorkout] = useState({})
+  const [userWorkout, setUserWorkout] = useState({})
+  const userName = localStorage.getItem('userName')
+
 
   useEffect(() => {
     const workoutRef = ref(db)
@@ -50,6 +53,7 @@ export const WorkoutComponent = ({ workoutId }) => {
           const workouts = Object.values(snapshot.val())
           const data = workouts?.find((workout) => workout._id === workoutId)
           setCurrentWorkout(data)
+          console.log('currentWorkout', currentWorkout);
         } else {
           console.log('No data')
         }
@@ -58,6 +62,25 @@ export const WorkoutComponent = ({ workoutId }) => {
         console.error(error)
       })
   }, [currentWorkout])
+
+  useEffect(() => {
+    const userRef = ref(db)
+    get(child(userRef,'users/'))
+      .then ((snapshot) => {
+        if (snapshot.exists()) {
+          const users = Object.values(snapshot.val())
+          const currentUser = users?.find((user) => user.username === userName)
+          const userCourses = Object.values(currentUser.courses.wy)
+
+          const data = userCourses?.find((usercourse) => usercourse.id === workoutId)
+          console.log('users', users);
+          console.log('currentUser', currentUser);
+          console.log('userCourses',userCourses);
+          console.log('data', data);
+          setUserWorkout(data)
+        }
+      })
+  }, [userWorkout])
 
   let exercises
   if (currentWorkout) {
@@ -124,6 +147,7 @@ export const WorkoutComponent = ({ workoutId }) => {
                                 className="workout-progress_bar bar_first"
                                 style={{
                                   background: `${ex.progress_color}`,
+                                  width: '10%'
                                 }}
                               >
                                 <span>45%</span>
