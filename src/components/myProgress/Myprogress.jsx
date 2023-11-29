@@ -21,6 +21,7 @@ export const MyProgress = ({
     // }
     console.log('userProgress', userProgress)
     console.log('value', value)
+    console.log('v',value.wy2tr1);
     writeUserProgress(userId, userName)
     setIsProgressFilled(true)
   }
@@ -30,70 +31,65 @@ export const MyProgress = ({
   const [value, setValue] = useState(Array(0))
 
 
-  const onSubmit = (data) => {
-    console.log('data', data)
-    
-  }
-  
 const writeUserProgress= (userId, userName) => {
   set(ref(db, 'users/' + userId), {
     username: userName,
     courses: {
       wy: {
         wy1: {
-          wytr1: {
+          wy1tr1: {
             max: 10,
-            userValue: 10
+            userValue: Number(value.wy1tr1) || 0
           }
         },
         wy2: {
           wy2tr1: {
             max: 10,
-            userValue: 0
+            userValue: Number(value.wy2tr1) || 0
           },
           wy2tr2: {
             max: 10,
-            userValue: 0
+            userValue: Number(value.wy2tr2) || 0
           },
-          wy3tr3: {
+          wy2tr3: {
             max: 5,
-            userValue: 0
+            userValue: Number(value.wy2tr3) || 0
           }
         },
         wy3: {
           wy3tr1: {
             max: 10,
-            userValue: 0
+            userValue: Number(value.wy3tr1) || 0
           },
           wy3tr2: {
             max: 10,
-            userValue: 0
+            userValue: Number(value.wy3tr2) || 0
           },
           wy3tr3: {
             max: 10,
-            userValue: 0
+            userValue: Number(value.wy3tr3) || 0
           },
           wy3tr4: {
             max: 10,
-            userValue: 0
+            userValue: Number(value.wy3tr4) || 0
           },
           wy3tr5: {
             max: 5,
-            userValue: 0
+            userValue: Number(value.wy3tr5) || 0
           }
         },
         wy4: {
           wy4tr1: {
             max: 10,
-            userValue: 0
+            userValue: Number(value.wy4tr1) || 0
           },
           wy4tr2: {
             max: 20,
-            userValue: 0
+            userValue: Number(value.wy4tr2) || 0
           },
           wy4tr3: {
             max: 20,
-            userValue: 0
+            userValue: Number(value.wy4tr3) || 0
           }
         }
       }
@@ -131,7 +127,6 @@ function handleChange(e, exId) {
 
       <div className="my-progress__description">
         <span>Мой прогресс</span>
-        {/* <form onSubmit={handleSubmit(onSubmit)}> */}
         {exercises?.map((progress, index) => (
           <div className="my-progress__description_text" key={progress._id}>
             <label className="exercise-description">{progress.name}</label>
@@ -156,7 +151,6 @@ function handleChange(e, exId) {
         >
           Отправить
         </button>
-        {/* </form> */}
       </div>
     </div>
   )
