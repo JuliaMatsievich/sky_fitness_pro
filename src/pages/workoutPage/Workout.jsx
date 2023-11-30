@@ -134,11 +134,11 @@ export const WorkoutComponent = ({ workoutId }) => {
                                 style={{
                                   background: `${ex.progress_color}`,
                                   width: `${
-                                    ex?.users[userId]?.id === userId ? getProcentProgress(ex?.users[userId].userValue,ex.max) : '0'}%`,
+                                    ex.users && ex?.users[userId]?.id === userId ? getProcentProgress(ex?.users[userId].userValue,ex.max) : '0'}%`,
                                 }}
                               >
                                 <span>{
-                                    ex?.users[userId]?.id === userId ? getProcentProgress(ex?.users[userId].userValue,ex.max) : '0'}%
+                                    ex.users && ex?.users[userId]?.id === userId ? getProcentProgress(ex?.users[userId].userValue,ex.max) : '0'}%
 
                                 </span>
                               </div>
