@@ -42,7 +42,7 @@ export function Authorization() {
     const errorCode = error.code;
     const errorMessage = error.message;
     if (errorCode === 'auth/invalid-email') {
-      setError('Неправильно введен email')
+      setError('Неправильно введен email или такой пользователь не найден')
     }
     if (errorCode === 'auth/wrong-password') {
       setError('Неправильно введен пароль')
@@ -72,7 +72,7 @@ useEffect(() => {
           <input
             className="authorization-form__input"
             placeholder="Логин(email)"
-            type="email"
+            type="text"
             value={inputLogin} 
             onChange={(event) => setLogin(event.target.value)}
             minLength={4}

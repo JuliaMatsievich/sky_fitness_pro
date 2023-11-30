@@ -1,7 +1,6 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import '../authRegForm.css'
 import { Link, useNavigate } from 'react-router-dom'
-import { writeUserData } from '../../../firebase'
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth'
 import { sendEmailVerification } from 'firebase/auth'
 
@@ -10,14 +9,29 @@ export function Registration() {
   const [inputLogin, setLogin] = useState('')
   const [inputPassword, setPassword] = useState('')
   const [inputPasswordChange, setPasswordChange] = useState('')
-  const [error, setError] = useState(false)
+  const [error, setError] = useState('')
+
   function newUser() {
     let email = inputLogin
     let password = inputPassword
+
+    if (!email && !password) {
+      setError('Поля не должны быть пустыми')
+      return
+    }
+    if (!email && password) {
+      setError('Поле Логин(email) не должно быть пустым')
+      return
+    }
+    if (email && !password) {
+      setError('Поле Пароль не должно быть пустым')
+      return
+    }
+
     const auth = getAuth()
 
     if (!(inputPassword === inputPasswordChange)) {
-      setError(true)
+      setError('Пароли не совпадают')
     } else {
       createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
@@ -33,11 +47,26 @@ export function Registration() {
         .catch((error) => {
           const errorCode = error.code
           const errorMessage = error.message
-          alert(errorCode + ' ' + errorMessage)
+          if (errorCode === 'auth/invalid-email') {
+            setError('Неправильно введен email или такой пользователь не найден')
+          }
+          if (errorCode === 'auth/wrong-password') {
+            setError('Неправильно введен пароль')
+          }
+          if (errorCode === 'auth/weak-password') {
+            setError('Пароль должен быть не меньше 8 символов' )
+          }
+
+
+          console.log(errorCode + ' ' + errorMessage);
           // ..
         })
     }
   }
+
+  useEffect(() => {
+    setError('')  
+  },[inputLogin, inputPassword])
 
   return (
     <div className="main-authorization">
@@ -84,7 +113,7 @@ export function Registration() {
         <div className="authorization-form__buttons">
           {error && (
             <div>
-              <p className="authorization-form_error">Пароли не совпадают</p>
+              <p className="authorization-form_error error">{error}</p>
             </div>
           )}
           <button onClick={newUser} className="authorization-form__button">
