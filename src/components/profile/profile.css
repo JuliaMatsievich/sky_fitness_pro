@@ -188,14 +188,6 @@
     top: 15px;
 }
 
-.main-password__close {
-    display: block !important;
-    width: 20px;
-    cursor: pointer;
-    position: relative;
-    left: 355px;
-    top: -180px;
-}
 
 .close-png:hover {
     background-color: gray;
