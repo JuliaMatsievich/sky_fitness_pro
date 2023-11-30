@@ -42,7 +42,6 @@ export const WorkoutComponent = ({ workoutId }) => {
 
   const [currentWorkout, setCurrentWorkout] = useState({})
   const userId = localStorage.getItem('uid')
-  const userName = localStorage.getItem('userName')
 
 
   useEffect(() => {
@@ -68,7 +67,6 @@ export const WorkoutComponent = ({ workoutId }) => {
       exercises = Object.values(currentWorkout.trains).map((elem) => elem)
     }
   }
-
 
   const getProcentProgress = (value, max) => {
     const procentProgress = Math.round((value * 100) / max)

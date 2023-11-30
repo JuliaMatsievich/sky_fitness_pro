@@ -1,8 +1,7 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useState } from 'react'
 import './myprogress.css'
-import { ref, set, child, push } from 'firebase/database'
+import { ref, set } from 'firebase/database'
 import { db } from '../../firebase'
-import { useForm } from 'react-hook-form'
 import { InputProgress } from '../inputProgress/inputProgress'
 
 export const MyProgress = ({

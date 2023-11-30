@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import '../authRegForm.css'
 import { Link, useNavigate } from 'react-router-dom'
 
@@ -9,10 +9,23 @@ export function Authorization() {
   const push = useNavigate();
   const [inputLogin, setLogin] = useState('');
   const [inputPassword, setPassword] = useState('');
+  const [error, setError] = useState('')
 
   function loginUser() {
     let email = inputLogin;
     let password = inputPassword;
+    if (!email && !password) {
+      setError('Поля не должны быть пустыми')
+      return
+    }
+    if (!email && password) {
+      setError('Поле Логин(email) не должно быть пустым')
+      return
+    }
+    if (email && !password) {
+      setError('Поле Пароль не должно быть пустым')
+      return
+    }
     const auth = getAuth();
     signInWithEmailAndPassword(auth, email, password)
   .then((userCredential) => {
@@ -28,11 +41,20 @@ export function Authorization() {
   .catch((error) => {
     const errorCode = error.code;
     const errorMessage = error.message;
-    alert(errorCode + ' ' + errorMessage);
+    if (errorCode === 'auth/invalid-email') {
+      setError('Неправильно введен email')
+    }
+    if (errorCode === 'auth/wrong-password') {
+      setError('Неправильно введен пароль')
+    }
+    console.log(errorCode + ' ' + errorMessage);
   });
+}
 
+useEffect(() => {
+  setError('')  
+},[inputLogin, inputPassword])
 
-  }
   return (
     <div className="main-authorization">
       <Link to='/.'>
@@ -50,7 +72,7 @@ export function Authorization() {
           <input
             className="authorization-form__input"
             placeholder="Логин(email)"
-            type="text"
+            type="email"
             value={inputLogin} 
             onChange={(event) => setLogin(event.target.value)}
             minLength={4}
@@ -66,6 +88,7 @@ export function Authorization() {
             maxLength={16}
           />
         </div>
+        {error ? <p className='error'>{error}</p> : ''}
         <div className="authorization-form__buttons">
           <button onClick={loginUser} className="authorization-form__button">Войти</button>
           <Link to='/reg'>
