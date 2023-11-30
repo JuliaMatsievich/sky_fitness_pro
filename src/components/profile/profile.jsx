@@ -84,12 +84,12 @@ export function Profile() {
                 <h2 className="profile-p">Пароль: {yourPassword}</h2>
               </div>
               <div className="profile-button__profile">
-                <button onClick={buttonLogin} className="profile-button-login">
+                <button onClick={buttonLogin} className="profile-button-login btn-purple">
                   Редактировать логин
                 </button>
                 <button
                   onClick={buttonPassword}
-                  className="profile-button-login"
+                  className="profile-button-login btn-purple"
                 >
                   Редактировать пароль
                 </button>
