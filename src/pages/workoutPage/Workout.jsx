@@ -5,7 +5,7 @@ import { MyProgress } from '../../components/myProgress/Myprogress'
 import { useNavigate } from 'react-router-dom'
 
 import { db } from '../../firebase'
-import { ref, child, get } from 'firebase/database'
+import { ref, child, get, set } from 'firebase/database'
 
 export const WorkoutComponent = ({ workoutId }) => {
   const [isProgressPop, setIsProgressPop] = useState(false)
@@ -42,7 +42,19 @@ export const WorkoutComponent = ({ workoutId }) => {
 
   const [currentWorkout, setCurrentWorkout] = useState({})
   const userId = localStorage.getItem('uid')
+  const userName = localStorage.getItem('userName')
+  // console.log('userId', userId);
+  // const [exercises, setExercises] = useState()
 
+  // const addUserCourse = (userId, userName, exId, userValue) => {
+  //   set(
+  //     ref(db, `/workouts/${currentWorkout._id}/trains/${exId}/users/` + userId),
+  //     {
+  //       userName: userName,
+  //       userValue: userValue,
+  //     },
+  //   )
+  // }
 
   useEffect(() => {
     const workoutRef = ref(db)
@@ -61,20 +73,20 @@ export const WorkoutComponent = ({ workoutId }) => {
       })
   }, [currentWorkout])
 
- 
   let exercises
   if (currentWorkout) {
     if (currentWorkout.trains) {
       exercises = Object.values(currentWorkout.trains).map((elem) => elem)
+      // console.log('exercises',exercises);
     }
   }
 
-  // let userExercises
-  // if (userWorkout) {
-  //   userExercises = Object.values(userWorkout).filter(
-  //     (elem) => elem != workoutId,
-  //   )
-  // }
+  // useEffect(() => {
+  //   for (const ex of exercises) {
+  //     addUserCourse(userId, userName, ex._id, 0)
+  //     // console.log('ex',ex._id);
+  //   }
+  // }, [exercises])
 
   const getProcentProgress = (value, max) => {
     const procentProgress = Math.round((value * 100) / max)
@@ -139,11 +151,14 @@ export const WorkoutComponent = ({ workoutId }) => {
                                 className="workout-progress_bar bar_first"
                                 style={{
                                   background: `${ex.progress_color}`,
-                                  width: `${getProcentProgress(ex.users[userId].userValue, ex.max)}%`,
-                                  // /workouts/wy2/trains/wy2tr3/users/XIOynDBUovTrEjRQ3dhpKuMdm7G2
+                                  width: `${
+                                    ex?.users[userId]?.id === userId ? getProcentProgress(ex?.users[userId].userValue,ex.max) : '0'}%`,
                                 }}
                               >
-                                <span>{getProcentProgress(ex.users[userId].userValue, ex.max)}%</span>
+                                <span>{
+                                    ex?.users[userId]?.id === userId ? getProcentProgress(ex?.users[userId].userValue,ex.max) : '0'}%
+
+                                </span>
                               </div>
                             </div>
                           </div>

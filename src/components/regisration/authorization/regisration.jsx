@@ -3,7 +3,7 @@ import '../authRegForm.css'
 import { Link, useNavigate } from 'react-router-dom'
 import { writeUserData } from '../../../firebase'
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth'
-import { sendEmailVerification } from "firebase/auth";
+import { sendEmailVerification } from 'firebase/auth'
 
 export function Registration() {
   const push = useNavigate()
@@ -19,18 +19,16 @@ export function Registration() {
     if (!(inputPassword === inputPasswordChange)) {
       setError(true)
     } else {
-    
-
-       createUserWithEmailAndPassword(auth, email, password)
+      createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
           // Signed up
           const user = userCredential.user
           localStorage.setItem('userName', user.email)
           localStorage.setItem('userPassword', password)
+          localStorage.setItem('uid', user.auth.currentUser.uid)
           push('/')
           // ...
-          sendEmailVerification(auth.currentUser).then(() => {
-          })
+          sendEmailVerification(auth.currentUser).then(() => {})
         })
         .catch((error) => {
           const errorCode = error.code
