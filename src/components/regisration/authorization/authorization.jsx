@@ -20,7 +20,7 @@ export function Authorization() {
     const user = userCredential.user;
     localStorage.setItem('userName', user.email);
     localStorage.setItem('userPassword', password);
-    localStorage.setItem('uid',auth.currentUser.uid)
+    localStorage.setItem('uid', user.auth.currentUser.uid)
     console.log(user);
     push('/');
     // ...
@@ -30,6 +30,7 @@ export function Authorization() {
     const errorMessage = error.message;
     alert(errorCode + ' ' + errorMessage);
   });
+
 
   }
   return (

@@ -41,8 +41,8 @@ export const WorkoutComponent = ({ workoutId }) => {
   }, [isProgressFilled])
 
   const [currentWorkout, setCurrentWorkout] = useState({})
-  const [userWorkout, setUserWorkout] = useState({})
-  const userName = localStorage.getItem('userName')
+  const userId = localStorage.getItem('uid')
+
 
   useEffect(() => {
     const workoutRef = ref(db)
@@ -61,22 +61,7 @@ export const WorkoutComponent = ({ workoutId }) => {
       })
   }, [currentWorkout])
 
-  useEffect(() => {
-    const userRef = ref(db)
-    get(child(userRef, 'users/')).then((snapshot) => {
-      if (snapshot.exists()) {
-        const users = Object.values(snapshot.val())
-        const currentUser = users?.find((user) => user.username === userName)
-        const userCourses = Object.values(currentUser.courses.wy)
-
-        const data = userCourses?.find(
-          (usercourse) => usercourse.id === workoutId,
-        )
-        setUserWorkout(data)
-      }
-    })
-  }, [userWorkout])
-
+ 
   let exercises
   if (currentWorkout) {
     if (currentWorkout.trains) {
@@ -84,12 +69,12 @@ export const WorkoutComponent = ({ workoutId }) => {
     }
   }
 
-  let userExercises
-  if (userWorkout) {
-    userExercises = Object.values(userWorkout).filter(
-      (elem) => elem != workoutId,
-    )
-  }
+  // let userExercises
+  // if (userWorkout) {
+  //   userExercises = Object.values(userWorkout).filter(
+  //     (elem) => elem != workoutId,
+  //   )
+  // }
 
   const getProcentProgress = (value, max) => {
     const procentProgress = Math.round((value * 100) / max)
@@ -140,7 +125,7 @@ export const WorkoutComponent = ({ workoutId }) => {
                     <p>Мой прогресс по тренировке:</p>
 
                     {currentWorkout.trains &&
-                      userExercises?.map((ex) => (
+                      exercises?.map((ex) => (
                         <div className="workout-progress__rate" key={ex._id}>
                           <span>{ex.name}</span>
                           <div className="workout-show__progress">
@@ -154,10 +139,11 @@ export const WorkoutComponent = ({ workoutId }) => {
                                 className="workout-progress_bar bar_first"
                                 style={{
                                   background: `${ex.progress_color}`,
-                                  width: `${getProcentProgress(ex.userValue, ex.max)}%`,
+                                  width: `${getProcentProgress(ex.users[userId].userValue, ex.max)}%`,
+                                  // /workouts/wy2/trains/wy2tr3/users/XIOynDBUovTrEjRQ3dhpKuMdm7G2
                                 }}
                               >
-                                <span>{getProcentProgress(ex.userValue, ex.max)}%</span>
+                                <span>{getProcentProgress(ex.users[userId].userValue, ex.max)}%</span>
                               </div>
                             </div>
                           </div>
