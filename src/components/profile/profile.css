@@ -182,9 +182,10 @@
     display: block !important;
     width: 20px;
     cursor: pointer;
-    position: relative;
-    left: 350px;
-    top: -145px;
+    /* position: relative; */
+    position: absolute;
+    right: 15px;
+    top: 15px;
 }
 
 .main-password__close {
