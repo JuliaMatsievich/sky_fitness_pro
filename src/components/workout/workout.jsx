@@ -7,6 +7,7 @@ import { ref, child, get } from 'firebase/database'
 
 function WorkoutList() {
   const [workouts, setWorkouts] = useState('')
+
   useEffect(() => {
     const workoutRef = ref(db)
     get(child(workoutRef, 'workouts/'))

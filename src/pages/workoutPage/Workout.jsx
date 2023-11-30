@@ -87,7 +87,7 @@ export const WorkoutComponent = ({ workoutId }) => {
                   <div className="workout__section">
                     <h1 className="workout__title">Йога</h1>
                   </div>
-                  <span>{currentWorkout?.name}</span>
+                  <span>{currentWorkout?.name} / {currentWorkout.title}</span>
                 </div>
 
                 <iframe
