@@ -13,17 +13,18 @@ export const MyProgress = ({
 }) => {
   const userName = localStorage.getItem('userName')
   const userId = localStorage.getItem('uid')
+  const [error, setError] = useState('')
 
   const fillProgressComplete = () => {
-    // if (Object.keys(value).length) {
-    //   writeUserProgress(userId, userName)
-    // } else {
-    //   console.log('pol');
-    // }
-    Object.keys(value).forEach(key => {
-      addUserCourse (userId, userName,key,value[key])
-    })
-    setIsProgressFilled(true)
+    if (Object.keys(value).length) {
+      setError('')
+      Object.keys(value).forEach(key => {
+        addUserCourse (userId, userName,key,value[key])
+      })
+      setIsProgressFilled(true)
+    } else {
+      setError('Введите значения')
+    }
   }
 
   const [value, setValue] = useState([])
@@ -74,7 +75,7 @@ export const MyProgress = ({
             <InputProgress handleChange={handleChange} progress={progress} />
           </div>
         ))}
-
+        {error ? <p className='my-progress__error error'>{error}</p> : ''}
         <button
           type="submit"
           className="submit-button btn-purple"
