@@ -34,23 +34,27 @@
     border-radius: 26px;
     border: 1px solid #000;
     width: 278px;
+    height: 76px;
     flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .main-tasks-h2 {
     color: #000;
-    text-align: center;
     font-variant-numeric: lining-nums proportional-nums;
     font-size: 20px;
     font-style: normal;
     font-weight: 400;
     line-height: 115%;
     letter-spacing: -0.05px;
+    padding-bottom: 6px;
 }
 
 .task-color {
     color: var(--mint-90, #06B16E);
-    text-align: center;
     font-variant-numeric: lining-nums proportional-nums;
     font-size: 20px;
     font-style: normal;
@@ -61,7 +65,6 @@
 
 .main-tasks-p {
     color: #000;
-    text-align: center;
     font-variant-numeric: lining-nums proportional-nums;
     margin-bottom: 7px;
     font-size: 16px;
