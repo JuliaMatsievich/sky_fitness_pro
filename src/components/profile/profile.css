@@ -54,7 +54,9 @@
     background: var(--palette-purple-90, #3b096d);
 }
 
-
+.footer {
+    margin-bottom: 50px;
+}
 .footer-h1 {
     color: #000;
     font-variant-numeric: lining-nums proportional-nums;

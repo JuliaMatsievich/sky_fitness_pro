@@ -113,7 +113,7 @@ export function Profile() {
                     Перейти →
                   </button>
                 </div>
-                <div className="footer-main-block img2">
+                {/* <div className="footer-main-block img2">
                   <h2 className="footer-main-h1">Стретчинг</h2>
                   <img
                     className="footer-img-gap2"
@@ -140,7 +140,7 @@ export function Profile() {
                   >
                     Перейти →
                   </button>
-                </div>
+                </div> */}
               </div>
             </footer>
 

@@ -43,18 +43,7 @@ export const WorkoutComponent = ({ workoutId }) => {
   const [currentWorkout, setCurrentWorkout] = useState({})
   const userId = localStorage.getItem('uid')
   const userName = localStorage.getItem('userName')
-  // console.log('userId', userId);
-  // const [exercises, setExercises] = useState()
 
-  // const addUserCourse = (userId, userName, exId, userValue) => {
-  //   set(
-  //     ref(db, `/workouts/${currentWorkout._id}/trains/${exId}/users/` + userId),
-  //     {
-  //       userName: userName,
-  //       userValue: userValue,
-  //     },
-  //   )
-  // }
 
   useEffect(() => {
     const workoutRef = ref(db)
@@ -77,16 +66,9 @@ export const WorkoutComponent = ({ workoutId }) => {
   if (currentWorkout) {
     if (currentWorkout.trains) {
       exercises = Object.values(currentWorkout.trains).map((elem) => elem)
-      // console.log('exercises',exercises);
     }
   }
 
-  // useEffect(() => {
-  //   for (const ex of exercises) {
-  //     addUserCourse(userId, userName, ex._id, 0)
-  //     // console.log('ex',ex._id);
-  //   }
-  // }, [exercises])
 
   const getProcentProgress = (value, max) => {
     const procentProgress = Math.round((value * 100) / max)
