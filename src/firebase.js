@@ -7,13 +7,13 @@ import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDqa4cOzW_N8OKaxBptQb_PqSBYbP0XN6U",
-  authDomain: "sky-fitness-pro-83d20.firebaseapp.com",
-  databaseURL: "https://sky-fitness-pro-83d20-default-rtdb.europe-west1.firebasedatabase.app",
-  projectId: "sky-fitness-pro-83d20",
-  storageBucket: "sky-fitness-pro-83d20.appspot.com",
-  messagingSenderId: "718553486746",
-  appId: "1:718553486746:web:b0ee9323b4716e89751623"
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  databaseURL: process.env.REACT_APP_FIREBASE_DATABASE_URL,
+  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_FIREBASE_APP_ID
 };
 
 // Initialize Firebase
