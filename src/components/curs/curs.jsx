@@ -4,11 +4,19 @@ import { ref, child, get } from 'firebase/database'
 import { db } from '../../firebase'
 
 export const Curs = ({ cursId }) => {
- 
   const [isLoading, setIsLoading] = useState(true)
   const [currentCurs, setCurrentCurs] = useState({})
+  const [isClickSignup, setIsClickSignup] = useState(false)
 
-useEffect(() => {
+  const handleClickSignupTraining = () => {
+    setIsClickSignup(true)
+  }
+
+  const closePopup = () => {
+    setIsClickSignup(false)
+  }
+
+  useEffect(() => {
     const courseRef = ref(db)
     get(child(courseRef, `courses/`))
       .then((snapshot) => {
@@ -82,9 +90,26 @@ useEffect(() => {
           выбором направления и тренера, с которым тренировки принесут здоровье
           и радость!
         </p>
-        <button className="signUpTrain__btn btn-purple">
+        <button
+          className="signUpTrain__btn btn-purple"
+          onClick={handleClickSignupTraining}
+        >
           Записаться на тренировку
         </button>
+        {isClickSignup ? (
+          <div className="signUpTrain__popup">
+            <div className="signUpTrain__complete">
+                  <img
+                    src="/img/close.png"
+                    alt="close"
+                    className="close-png"
+                    onClick={closePopup}
+                  />
+              <p className='signUpTrain__popup-text'>Курс будет добавлен в ваш профиль администратором</p>
+              <img className='signUpTrain__popup-img' src="/img/hand.png" alt="progress" />
+            </div>
+          </div>
+        ) : null}
       </div>
     </>
   )
