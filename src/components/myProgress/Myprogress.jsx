@@ -3,7 +3,6 @@ import './myprogress.css'
 import { ref, set, get, child } from 'firebase/database'
 import { db } from '../../firebase'
 import { InputProgress } from '../inputProgress/inputProgress'
-import { UserContext } from '../../App'
 import { current } from '@reduxjs/toolkit'
 
 export const MyProgress = ({
@@ -18,10 +17,6 @@ export const MyProgress = ({
   const [workoutId, setWorkoutId] = useState()
   const [value, setValue] = useState([])
   const [isProgressComplete, setIsProgressComplete] = useState(false)
-
-
-
-  // const { isProgressComplete, setIsProgressComplete, isWorkoutComplete, setIsWorkoutComplete } = useContext(UserContext)
 
   const fillProgressComplete = () => {
     if (Object.keys(value).length) {
@@ -91,11 +86,6 @@ export const MyProgress = ({
     const result = areValuesEqual(userValues, maxValues, currentWorkout._id)
     if (result) setIsProgressComplete(true)
     else setIsProgressComplete(false)
-    // setIsWorkoutComplete((prevState) => ({
-    //   ...prevState,
-    //   [currentWorkout._id]: result
-    // }))
-    // console.log('isWorkoutComplete', isWorkoutComplete);
   },[value])
 
   return (

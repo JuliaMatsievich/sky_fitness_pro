@@ -5,13 +5,6 @@ export const UserContext = createContext(null);
 
 function App() {
   const [isUser, setIsUser] = useState(true);
-  // const [isProgressComplete, setIsProgressComplete] = useState(false)
-
-  // create a state with an id
-  // const [workoutId, setWorkoutId] = useState()
-  //
-
-  // const [isWorkoutComplete, setIsWorkoutComplete] = useState([])
 
   return (
     <>
