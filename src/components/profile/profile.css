@@ -59,9 +59,12 @@
     width: 360px;
     height: 480px;
     border-radius: 30px;
-    background: rgba(205, 205, 205, 0.10);
+    background: rgba(205, 205, 205, 0.1);
     backdrop-filter: blur(14.51865291595459px);
     color: rgba(205, 205, 205, 0.1);
+    box-shadow:
+        -10px 10px 15.999px 0px rgba(0, 0, 0, 0.1),
+        10px -10px 16px 0px rgba(0, 0, 0, 0.1);
 }
 
 .footer-img-union {
@@ -123,7 +126,7 @@
 
 .footer-main-button {
     border: none;
-    cursor:pointer;
+    cursor: pointer;
     color: #000;
     text-align: center;
     font-variant-numeric: lining-nums proportional-nums;
@@ -138,7 +141,7 @@
     align-items: center;
     gap: 10px;
     border-radius: 80px;
-    background: #C7E957;
+    background: #c7e957;
     margin-left: 30px;
     margin-bottom: 27px;
 }
@@ -170,9 +173,7 @@
     top: 15px;
 }
 
-
 .close-png:hover {
     background-color: gray;
     border-radius: 3px;
 }
-
