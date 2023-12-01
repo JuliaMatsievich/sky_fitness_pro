@@ -84,12 +84,12 @@ export function Profile() {
                 <h2 className="profile-p">Пароль: {yourPassword}</h2>
               </div>
               <div className="profile-button__profile">
-                <button onClick={buttonLogin} className="profile-button-login">
+                <button onClick={buttonLogin} className="profile-button-login btn-purple">
                   Редактировать логин
                 </button>
                 <button
                   onClick={buttonPassword}
-                  className="profile-button-login"
+                  className="profile-button-login btn-purple"
                 >
                   Редактировать пароль
                 </button>
@@ -113,7 +113,7 @@ export function Profile() {
                     Перейти →
                   </button>
                 </div>
-                <div className="footer-main-block img2">
+                {/* <div className="footer-main-block img2">
                   <h2 className="footer-main-h1">Стретчинг</h2>
                   <img
                     className="footer-img-gap2"
@@ -140,7 +140,7 @@ export function Profile() {
                   >
                     Перейти →
                   </button>
-                </div>
+                </div> */}
               </div>
             </footer>
 
