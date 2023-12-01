@@ -54,10 +54,12 @@ export function Registration() {
             setError('Неправильно введен пароль')
           }
           if (errorCode === 'auth/weak-password') {
-            setError('Пароль должен быть не меньше 8 символов' )
+            setError('Пароль должен быть не меньше 8 символов')
           }
-
-
+          if (errorCode === 'auth/email-already-in-use') {
+            setError('Пользователь с таким логином(email) уже существует')
+          }
+          
           console.log(errorCode + ' ' + errorMessage);
           // ..
         })
@@ -68,7 +70,7 @@ export function Registration() {
 
   useEffect(() => {
     setError('')  
-  },[inputLogin, inputPassword])
+  },[inputLogin, inputPassword,inputPasswordChange])
 
   return (
     <div className="main-authorization">

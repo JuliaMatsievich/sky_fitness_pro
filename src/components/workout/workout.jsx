@@ -57,13 +57,13 @@ function WorkoutList() {
 
   return (
     <div className="for__profile">
-      <img
-        onClick={() => closeWindow(false)}
-        className="close-png close-png__workout"
-        src="./img/close.png"
-        alt=""
-      />
       <div className="main-workout">
+        <img
+          onClick={() => closeWindow(false)}
+          className="close-png close-png__workout"
+          src="./img/close.png"
+          alt=""
+        />
         <h1 className="main-h1__workout">Выберите тренировку</h1>
         <div className="main-div__workout">
           {workouts &&
