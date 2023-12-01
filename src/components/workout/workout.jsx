@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useContext } from 'react'
 import './workout.css'
-import { closeWindow } from '../profile/profile';
+import { closeWindow } from '../profile/profile'
 import { Link } from 'react-router-dom'
 import { db } from '../../firebase'
 import { ref, child, get } from 'firebase/database'
-import { UserContext } from '../../App';
+import { UserContext } from '../../App'
 
 function WorkoutList() {
   const [workouts, setWorkouts] = useState('')
@@ -12,8 +12,14 @@ function WorkoutList() {
   const [userWorkouts, setUserWorkouts] = useState()
 
   const findUserWorkoutComplete = (workoutId) => {
-    const userWorkout = userWorkouts?.find((workout) => workout.id === workoutId)
-    return userWorkout.isProgressComplete
+    const userWorkout = userWorkouts?.find(
+      (workout) => workout.id === workoutId,
+    )
+    if (userWorkout) {
+      return userWorkout.isProgressComplete
+    } else {
+      return false
+    }
   }
 
   useEffect(() => {
@@ -39,7 +45,8 @@ function WorkoutList() {
         if (snapshot.exists()) {
           const data = Object.values(snapshot.val())
           setUserWorkouts(Object.values(data))
-         } else {
+        } else {
+          setUserWorkouts(false)
           console.log('No data')
         }
       })
@@ -48,55 +55,57 @@ function WorkoutList() {
       })
   }, [userWorkouts])
 
-
   return (
     <div className="for__profile">
-      <img
-        onClick={() => closeWindow(false)}
-        className="close-png close-png__workout"
-        src="./img/close.png"
-        alt=""
-      />
       <div className="main-workout">
+        <img
+          onClick={() => closeWindow(false)}
+          className="close-png close-png__workout"
+          src="./img/close.png"
+          alt=""
+        />
         <h1 className="main-h1__workout">Выберите тренировку</h1>
         <div className="main-div__workout">
-          {workouts && workouts?.map((workout) => (
-            <div key={workout._id}>
-              {findUserWorkoutComplete(workout._id) ? (
-                <Link to={`/workout/${workout._id}`}>
-                <div className="main-tasks tasks-color">
-                  <h2 className="main-tasks-h2 task-color">
-                    {workout.name}
-                    <svg
-                      className="main-tasks__svg"
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="28"
-                      height="26"
-                      viewBox="0 0 28 26"
-                      fill="none"
-                    >
-                      <circle cx="12" cy="13.5" r="11.5" stroke="#06B16E" />
-                      <path d="M6 9.81034L11.775 15.5L27 0.5" stroke="#06B16E" />
-                    </svg>
-                  </h2>
-                  <p className="main-tasks-p main-tasks-pColor">
-                    {workout.title}
-                  </p>
-                </div>
-              </Link>
-              ) : 
-                <Link to={`/workout/${workout._id}`}>
-                  <div className="main-tasks">
-                    <h2 className="main-tasks-h2 main-tasks_h2__help">
-                    {workout.name}
-                    </h2>
-                    <p className="main-tasks-p">{workout.title}</p>
-                  </div>
-                </Link>
-              }
-              
-            </div>
-          ))}
+          {workouts &&
+            workouts?.map((workout) => (
+              <div key={workout._id}>
+                {userWorkouts && findUserWorkoutComplete(workout._id) ? (
+                  <Link to={`/workout/${workout._id}`}>
+                    <div className="main-tasks tasks-color">
+                      <h2 className="main-tasks-h2 task-color">
+                        {workout.name}
+                        <svg
+                          className="main-tasks__svg"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="28"
+                          height="26"
+                          viewBox="0 0 28 26"
+                          fill="none"
+                        >
+                          <circle cx="12" cy="13.5" r="11.5" stroke="#06B16E" />
+                          <path
+                            d="M6 9.81034L11.775 15.5L27 0.5"
+                            stroke="#06B16E"
+                          />
+                        </svg>
+                      </h2>
+                      <p className="main-tasks-p main-tasks-pColor">
+                        {workout.title}
+                      </p>
+                    </div>
+                  </Link>
+                ) : (
+                  <Link to={`/workout/${workout._id}`}>
+                    <div className="main-tasks">
+                      <h2 className="main-tasks-h2 main-tasks_h2__help">
+                        {workout.name}
+                      </h2>
+                      <p className="main-tasks-p">{workout.title}</p>
+                    </div>
+                  </Link>
+                )}
+              </div>
+            ))}
           {/* <Link to="/workout">
             <div className="main-tasks tasks-color">
               <h2 className="main-tasks-h2 task-color">
@@ -170,5 +179,4 @@ function WorkoutList() {
     </div>
   )
 }
-export default WorkoutList;
-
+export default WorkoutList
