@@ -8,10 +8,6 @@ import { UserContext } from '../../App';
 
 function WorkoutList() {
   const [workouts, setWorkouts] = useState('')
-  const { workoutId, isProgressComplete, setIsProgressComplete, isWorkoutComplete, setIsWorkoutComplete } = useContext(UserContext)
-  // const { isProgressComplete, setIsProgressComplete } = useContext(UserContext)
-  // const [isProgressComplete, setIsProgressComplete] = useState()
-  // const { workoutId } = useContext(UserContext)
   const userId = localStorage.getItem('uid')
   const [userWorkouts, setUserWorkouts] = useState()
 
@@ -34,7 +30,6 @@ function WorkoutList() {
       .catch((error) => {
         console.error(error)
       })
-      // console.log('isWorkoutComplete',isWorkoutComplete[workoutId]);      
   }, [workouts])
 
   useEffect(() => {
@@ -44,26 +39,16 @@ function WorkoutList() {
         if (snapshot.exists()) {
           const data = Object.values(snapshot.val())
           setUserWorkouts(Object.values(data))
-          console.log('userWorkouts',userWorkouts);
-          console.log('workoutId',workoutId);
-          // const w = userWorkouts?.find((workout) => workout.id === workoutId)
-          console.log('w',findUserWorkoutComplete(workoutId));
-
-        } else {
+         } else {
           console.log('No data')
         }
       })
       .catch((error) => {
         console.error(error)
       })
-      // console.log('isWorkoutComplete',isWorkoutComplete[workoutId]);      
-  }, [workouts])
+  }, [userWorkouts])
 
 
-
-
-
-  
   return (
     <div className="for__profile">
       <img

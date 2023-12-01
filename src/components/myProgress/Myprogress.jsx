@@ -15,8 +15,13 @@ export const MyProgress = ({
   const userName = localStorage.getItem('userName')
   const userId = localStorage.getItem('uid')
   const [error, setError] = useState('')
+  const [workoutId, setWorkoutId] = useState()
+  const [value, setValue] = useState([])
+  const [isProgressComplete, setIsProgressComplete] = useState(false)
 
-  const { isProgressComplete, setIsProgressComplete, isWorkoutComplete, setIsWorkoutComplete } = useContext(UserContext)
+
+
+  // const { isProgressComplete, setIsProgressComplete, isWorkoutComplete, setIsWorkoutComplete } = useContext(UserContext)
 
   const fillProgressComplete = () => {
     if (Object.keys(value).length) {
@@ -30,8 +35,6 @@ export const MyProgress = ({
       setError('Введите значения')
     }
   }
-
-  const [value, setValue] = useState([])
 
   const addUserCourse = (
     userId,
@@ -73,8 +76,6 @@ export const MyProgress = ({
     train.max.toString(),
   )
 
-  const { workoutId, setWorkoutId } = useContext(UserContext)
-
   const areValuesEqual = (userValues, maxValues, id) => {
     if (
       userValues.length === maxValues.length &&
@@ -90,11 +91,11 @@ export const MyProgress = ({
     const result = areValuesEqual(userValues, maxValues, currentWorkout._id)
     if (result) setIsProgressComplete(true)
     else setIsProgressComplete(false)
-    setIsWorkoutComplete((prevState) => ({
-      ...prevState,
-      [currentWorkout._id]: result
-    }))
-    console.log('isWorkoutComplete', isWorkoutComplete);
+    // setIsWorkoutComplete((prevState) => ({
+    //   ...prevState,
+    //   [currentWorkout._id]: result
+    // }))
+    // console.log('isWorkoutComplete', isWorkoutComplete);
   },[value])
 
   return (

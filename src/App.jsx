@@ -5,26 +5,20 @@ export const UserContext = createContext(null);
 
 function App() {
   const [isUser, setIsUser] = useState(true);
-  const [isProgressComplete, setIsProgressComplete] = useState(false)
+  // const [isProgressComplete, setIsProgressComplete] = useState(false)
 
   // create a state with an id
-  const [workoutId, setWorkoutId] = useState()
+  // const [workoutId, setWorkoutId] = useState()
   //
 
-  const [isWorkoutComplete, setIsWorkoutComplete] = useState([])
+  // const [isWorkoutComplete, setIsWorkoutComplete] = useState([])
 
   return (
     <>
       <UserContext.Provider
         value={{
           isUser,
-          setIsUser,
-          isProgressComplete,
-          setIsProgressComplete,
-          workoutId,
-          setWorkoutId,
-          isWorkoutComplete,
-          setIsWorkoutComplete
+          setIsUser
         }}
       >
         <AppRoutes />
