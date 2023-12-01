@@ -16,7 +16,7 @@ export const MyProgress = ({
   const userId = localStorage.getItem('uid')
   const [error, setError] = useState('')
 
-  const { isProgressComplete, setIsProgressComplete } = useContext(UserContext)
+  const { isProgressComplete, setIsProgressComplete, isWorkoutComplete, setIsWorkoutComplete } = useContext(UserContext)
 
   const fillProgressComplete = () => {
     if (Object.keys(value).length) {
@@ -80,7 +80,12 @@ export const MyProgress = ({
     const result = areValuesEqual(userValues, maxValues, currentWorkout._id)
     if (result) setIsProgressComplete(true)
     else setIsProgressComplete(false)
-  })
+    setIsWorkoutComplete((prevState) => ({
+      ...prevState,
+      [currentWorkout._id]: result
+    }))
+    console.log('isWorkoutComplete', isWorkoutComplete);
+  },[value])
 
   return (
     <div className="my-progress">

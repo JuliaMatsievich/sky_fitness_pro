@@ -8,7 +8,10 @@ import { UserContext } from '../../App';
 
 function WorkoutList() {
   const [workouts, setWorkouts] = useState('')
-  const { isProgressComplete, setIsProgressComplete } = useContext(UserContext)
+  const { workoutId, isProgressComplete, setIsProgressComplete, isWorkoutComplete, setIsWorkoutComplete } = useContext(UserContext)
+  // const { isProgressComplete, setIsProgressComplete } = useContext(UserContext)
+  // const [isProgressComplete, setIsProgressComplete] = useState()
+  // const { workoutId } = useContext(UserContext)
 
   useEffect(() => {
     const workoutRef = ref(db)
@@ -24,9 +27,10 @@ function WorkoutList() {
       .catch((error) => {
         console.error(error)
       })
+      // console.log('isWorkoutComplete',isWorkoutComplete[workoutId]);      
   }, [workouts])
 
-  const { workoutId } = useContext(UserContext)
+
   
   return (
     <div className="for__profile">
@@ -41,7 +45,7 @@ function WorkoutList() {
         <div className="main-div__workout">
           {workouts && workouts?.map((workout) => (
             <div key={workout._id}>
-              {isProgressComplete && workoutId === workout._id ? (
+              {isWorkoutComplete[workout._id] ? (
                 <Link to={`/workout/${workout._id}`}>
                 <div className="main-tasks tasks-color">
                   <h2 className="main-tasks-h2 task-color">

@@ -11,6 +11,8 @@ function App() {
   const [workoutId, setWorkoutId] = useState()
   //
 
+  const [isWorkoutComplete, setIsWorkoutComplete] = useState([])
+
   return (
     <>
       <UserContext.Provider
@@ -20,7 +22,9 @@ function App() {
           isProgressComplete,
           setIsProgressComplete,
           workoutId,
-          setWorkoutId
+          setWorkoutId,
+          isWorkoutComplete,
+          setIsWorkoutComplete
         }}
       >
         <AppRoutes />
