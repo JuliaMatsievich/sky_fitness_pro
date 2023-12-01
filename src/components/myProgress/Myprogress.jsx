@@ -24,6 +24,7 @@ export const MyProgress = ({
       Object.keys(value).forEach((key) => {
         addUserCourse(userId, userName, key, value[key], isProgressComplete)
       })
+      addCourseToUser(userId, userName, isProgressComplete)
       setIsProgressFilled(true)
     } else {
       setError('Введите значения')
@@ -45,9 +46,18 @@ export const MyProgress = ({
         id: userId,
         userName: userName,
         userValue: userValue,
-        isProgressComplete: isProgressComplete,
+        isProgressComplete: isProgressComplete
       },
     )
+  }
+
+  const addCourseToUser = (userId, userName, isProgressComplete) => {
+    set(ref(db, `/users/${userId}/courses/wy/${currentWorkout._id}/`),
+    {
+      id: currentWorkout._id,
+      isProgressComplete: isProgressComplete,
+      userName: userName
+    })
   }
 
   const handleChange = (e, exId) => {

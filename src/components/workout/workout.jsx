@@ -12,6 +12,13 @@ function WorkoutList() {
   // const { isProgressComplete, setIsProgressComplete } = useContext(UserContext)
   // const [isProgressComplete, setIsProgressComplete] = useState()
   // const { workoutId } = useContext(UserContext)
+  const userId = localStorage.getItem('uid')
+  const [userWorkouts, setUserWorkouts] = useState()
+
+  const findUserWorkoutComplete = (workoutId) => {
+    const userWorkout = userWorkouts?.find((workout) => workout.id === workoutId)
+    return userWorkout.isProgressComplete
+  }
 
   useEffect(() => {
     const workoutRef = ref(db)
@@ -30,6 +37,31 @@ function WorkoutList() {
       // console.log('isWorkoutComplete',isWorkoutComplete[workoutId]);      
   }, [workouts])
 
+  useEffect(() => {
+    const usersRef = ref(db)
+    get(child(usersRef, `users/${userId}/courses/wy`))
+      .then((snapshot) => {
+        if (snapshot.exists()) {
+          const data = Object.values(snapshot.val())
+          setUserWorkouts(Object.values(data))
+          console.log('userWorkouts',userWorkouts);
+          console.log('workoutId',workoutId);
+          // const w = userWorkouts?.find((workout) => workout.id === workoutId)
+          console.log('w',findUserWorkoutComplete(workoutId));
+
+        } else {
+          console.log('No data')
+        }
+      })
+      .catch((error) => {
+        console.error(error)
+      })
+      // console.log('isWorkoutComplete',isWorkoutComplete[workoutId]);      
+  }, [workouts])
+
+
+
+
 
   
   return (
@@ -45,7 +77,7 @@ function WorkoutList() {
         <div className="main-div__workout">
           {workouts && workouts?.map((workout) => (
             <div key={workout._id}>
-              {isWorkoutComplete[workout._id] ? (
+              {findUserWorkoutComplete(workout._id) ? (
                 <Link to={`/workout/${workout._id}`}>
                 <div className="main-tasks tasks-color">
                   <h2 className="main-tasks-h2 task-color">
