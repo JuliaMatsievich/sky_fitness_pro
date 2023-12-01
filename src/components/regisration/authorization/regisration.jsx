@@ -1,45 +1,74 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import '../authRegForm.css'
 import { Link, useNavigate } from 'react-router-dom'
-import { writeUserData } from '../../../firebase'
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth'
-import { sendEmailVerification } from "firebase/auth";
+import { sendEmailVerification } from 'firebase/auth'
 
 export function Registration() {
   const push = useNavigate()
   const [inputLogin, setLogin] = useState('')
   const [inputPassword, setPassword] = useState('')
   const [inputPasswordChange, setPasswordChange] = useState('')
-  const [error, setError] = useState(false)
+  const [error, setError] = useState('')
+
   function newUser() {
     let email = inputLogin
     let password = inputPassword
+
+    if (!email && !password) {
+      setError('Поля не должны быть пустыми')
+      return
+    }
+    if (!email && password) {
+      setError('Поле Логин(email) не должно быть пустым')
+      return
+    }
+    if (email && !password) {
+      setError('Поле Пароль не должно быть пустым')
+      return
+    }
+
     const auth = getAuth()
 
     if (!(inputPassword === inputPasswordChange)) {
-      setError(true)
+      setError('Пароли не совпадают')
     } else {
-    
-
-       createUserWithEmailAndPassword(auth, email, password)
+      createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
           // Signed up
           const user = userCredential.user
           localStorage.setItem('userName', user.email)
           localStorage.setItem('userPassword', password)
+          localStorage.setItem('uid', user.auth.currentUser.uid)
           push('/')
           // ...
-          sendEmailVerification(auth.currentUser).then(() => {
-          })
+          sendEmailVerification(auth.currentUser).then(() => {})
         })
         .catch((error) => {
           const errorCode = error.code
           const errorMessage = error.message
-          alert(errorCode + ' ' + errorMessage)
+          if (errorCode === 'auth/invalid-email') {
+            setError('Неправильно введен email или такой пользователь не найден')
+          }
+          if (errorCode === 'auth/wrong-password') {
+            setError('Неправильно введен пароль')
+          }
+          if (errorCode === 'auth/weak-password') {
+            setError('Пароль должен быть не меньше 8 символов')
+          }
+          if (errorCode === 'auth/email-already-in-use') {
+            setError('Пользователь с таким логином(email) уже существует')
+          }
+          
+          console.log(errorCode + ' ' + errorMessage);
           // ..
         })
     }
   }
+
+  useEffect(() => {
+    setError('')  
+  },[inputLogin, inputPassword,inputPasswordChange])
 
   return (
     <div className="main-authorization">
@@ -86,7 +115,7 @@ export function Registration() {
         <div className="authorization-form__buttons">
           {error && (
             <div>
-              <p className="authorization-form_error">Пароли не совпадают</p>
+              <p className="authorization-form_error error">{error}</p>
             </div>
           )}
           <button onClick={newUser} className="authorization-form__button">

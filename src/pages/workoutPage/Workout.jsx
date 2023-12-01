@@ -5,19 +5,19 @@ import { MyProgress } from '../../components/myProgress/Myprogress'
 import { useNavigate } from 'react-router-dom'
 
 import { db } from '../../firebase'
-import { ref, child, get } from 'firebase/database'
+import { ref, child, get, set } from 'firebase/database'
 
 export const WorkoutComponent = ({ workoutId }) => {
   const [isProgressPop, setIsProgressPop] = useState(false)
   const [isProgressFilled, setIsProgressFilled] = useState(false)
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState(false)
 
-  const push = useNavigate();
+  const push = useNavigate()
   useEffect(() => {
     if (localStorage.getItem('userName')) {
-      setVisible(true);
+      setVisible(true)
     } else {
-      push('/auth');
+      push('/auth')
     }
   }, [])
 
@@ -41,6 +41,8 @@ export const WorkoutComponent = ({ workoutId }) => {
   }, [isProgressFilled])
 
   const [currentWorkout, setCurrentWorkout] = useState({})
+  const userId = localStorage.getItem('uid')
+
 
   useEffect(() => {
     const workoutRef = ref(db)
@@ -66,6 +68,11 @@ export const WorkoutComponent = ({ workoutId }) => {
     }
   }
 
+  const getProcentProgress = (value, max) => {
+    const procentProgress = Math.round((value * 100) / max)
+    return procentProgress
+  }
+
   return (
     <div className="workout__container">
       {visible && (
@@ -78,7 +85,7 @@ export const WorkoutComponent = ({ workoutId }) => {
                   <div className="workout__section">
                     <h1 className="workout__title">Йога</h1>
                   </div>
-                  <span>{currentWorkout?.name}</span>
+                  <span>{currentWorkout?.name} / {currentWorkout.title}</span>
                 </div>
 
                 <iframe
@@ -124,9 +131,14 @@ export const WorkoutComponent = ({ workoutId }) => {
                                 className="workout-progress_bar bar_first"
                                 style={{
                                   background: `${ex.progress_color}`,
+                                  width: `${
+                                    ex.users && ex?.users[userId]?.id === userId ? getProcentProgress(ex?.users[userId].userValue,ex.max) : '0'}%`,
                                 }}
                               >
-                                <span>45%</span>
+                                <span>{
+                                    ex.users && ex?.users[userId]?.id === userId ? getProcentProgress(ex?.users[userId].userValue,ex.max) : '0'}%
+
+                                </span>
                               </div>
                             </div>
                           </div>
@@ -142,6 +154,7 @@ export const WorkoutComponent = ({ workoutId }) => {
                   setIsProgressFilled={setIsProgressFilled}
                   exercises={exercises}
                   closePopup={closePopup}
+                  currentWorkout={currentWorkout}
                 />
               </div>
             ) : null}

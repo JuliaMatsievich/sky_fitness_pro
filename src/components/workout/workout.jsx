@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import './workout.css'
-import { closeWindow } from '../profile/profile';
+import { closeWindow } from '../profile/profile'
 import { Link } from 'react-router-dom'
 import { db } from '../../firebase'
 import { ref, child, get } from 'firebase/database'
 
 function WorkoutList() {
   const [workouts, setWorkouts] = useState('')
+
   useEffect(() => {
     const workoutRef = ref(db)
     get(child(workoutRef, 'workouts/'))
@@ -25,27 +26,28 @@ function WorkoutList() {
 
   return (
     <div className="for__profile">
-      <img
-        onClick={() => closeWindow(false)}
-        className="close-png close-png__workout"
-        src="./img/close.png"
-        alt=""
-      />
       <div className="main-workout">
+        <img
+          onClick={() => closeWindow(false)}
+          className="close-png close-png__workout"
+          src="./img/close.png"
+          alt=""
+        />
         <h1 className="main-h1__workout">Выберите тренировку</h1>
         <div className="main-div__workout">
-          {workouts && workouts?.map((workout) => (
-            <div key={workout._id}>
-              <Link to={`/workout/${workout._id}`}>
-                <div className="main-tasks">
-                  <h2 className="main-tasks-h2 main-tasks_h2__help">
-                   {workout.name}
-                  </h2>
-                  <p className="main-tasks-p">{workout.title}</p>
-                </div>
-              </Link>
-            </div>
-          ))}
+          {workouts &&
+            workouts?.map((workout) => (
+              <div key={workout._id}>
+                <Link to={`/workout/${workout._id}`}>
+                  <div className="main-tasks">
+                    <h2 className="main-tasks-h2 main-tasks_h2__help">
+                      {workout.name}
+                    </h2>
+                    <p className="main-tasks-p">{workout.title}</p>
+                  </div>
+                </Link>
+              </div>
+            ))}
           {/* <Link to="/workout">
             <div className="main-tasks tasks-color">
               <h2 className="main-tasks-h2 task-color">
@@ -119,5 +121,4 @@ function WorkoutList() {
     </div>
   )
 }
-export default WorkoutList;
-
+export default WorkoutList
