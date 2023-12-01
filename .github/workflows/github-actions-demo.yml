@@ -1,9 +1,9 @@
 name: GitHub Actions Demo
 on:
   push:
-    branches: [ dev ]
+    branches: [ CI/CD ]
   pull_request:
-    branches: [ dev ]
+    branches: [ CI/CD ]
 jobs:
   init:
     runs-on: ubuntu-latest
