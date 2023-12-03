@@ -74,7 +74,7 @@ export const MyProgress = ({
   const areValuesEqual = (userValues, maxValues, id) => {
     if (
       userValues.length === maxValues.length &&
-      userValues.every((element, index) => element === maxValues[index])
+      userValues.every((element, index) => element >= maxValues[index])
     ) {
       setWorkoutId(id)
       return true
