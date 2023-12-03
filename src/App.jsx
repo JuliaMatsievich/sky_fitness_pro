@@ -5,7 +5,7 @@ export const UserContext = createContext(null);
 // commit for master(CI/CD)
 
 function App() {
-  const [isUser, setIsUser] = useState(true);
+  const [isUser, setIsUser] = useState(false);
 
   return (
     <>
