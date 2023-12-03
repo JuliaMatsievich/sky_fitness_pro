@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import './workout.css'
 import { Header } from '../../components/header/header'
 import { MyProgress } from '../../components/myProgress/Myprogress'
@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom'
 
 import { db } from '../../firebase'
 import { ref, child, get, set } from 'firebase/database'
+import { UserContext } from '../../App'
 
 export const WorkoutComponent = ({ workoutId }) => {
   const [isProgressPop, setIsProgressPop] = useState(false)

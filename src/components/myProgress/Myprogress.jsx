@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './myprogress.css'
-import { ref, set } from 'firebase/database'
+import { ref, set, get, child } from 'firebase/database'
 import { db } from '../../firebase'
 import { InputProgress } from '../inputProgress/inputProgress'
+import { current } from '@reduxjs/toolkit'
 
 export const MyProgress = ({
   setIsProgressFilled,
@@ -13,30 +14,49 @@ export const MyProgress = ({
   const userName = localStorage.getItem('userName')
   const userId = localStorage.getItem('uid')
   const [error, setError] = useState('')
+  const [workoutId, setWorkoutId] = useState()
+  const [value, setValue] = useState([])
+  const [isProgressComplete, setIsProgressComplete] = useState(false)
 
   const fillProgressComplete = () => {
     if (Object.keys(value).length) {
       setError('')
-      Object.keys(value).forEach(key => {
-        addUserCourse (userId, userName,key,value[key])
+      Object.keys(value).forEach((key) => {
+        addUserCourse(userId, userName, key, value[key], isProgressComplete)
       })
+      addCourseToUser(userId, userName, isProgressComplete)
       setIsProgressFilled(true)
     } else {
       setError('Введите значения')
     }
   }
 
-  const [value, setValue] = useState([])
+  const addUserCourse = (
+    userId,
+    userName,
+    exId,
+    userValue,
+    isProgressComplete,
+  ) => {
+    set(
+      ref(db, `/workouts/${currentWorkout._id}/trains/${exId}/users/` + userId),
+      {
+        id: userId,
+        userName: userName,
+        userValue: userValue,
+        isProgressComplete: isProgressComplete
+      },
+    )
+  }
 
-
-  const addUserCourse = (userId, userName,exId,userValue) => {
-    set(ref(db, `/workouts/${currentWorkout._id}/trains/${exId}/users/`+userId), {
-      id: userId,
-      userName: userName,
-      userValue: userValue
+  const addCourseToUser = (userId, userName, isProgressComplete) => {
+    set(ref(db, `/users/${userId}/courses/wy/${currentWorkout._id}/`),
+    {
+      id: currentWorkout._id,
+      isProgressComplete: isProgressComplete,
+      userName: userName
     })
-}
-
+  }
 
   const handleChange = (e, exId) => {
     const value = e.target.value
@@ -45,6 +65,28 @@ export const MyProgress = ({
       [exId]: value,
     }))
   }
+
+  const userValues = Object.values(value).map((val) => val)
+  const maxValues = Object.values(currentWorkout.trains).map((train) =>
+    train.max.toString(),
+  )
+
+  const areValuesEqual = (userValues, maxValues, id) => {
+    if (
+      userValues.length === maxValues.length &&
+      userValues.every((element, index) => element === maxValues[index])
+    ) {
+      setWorkoutId(id)
+      return true
+    }
+    return false
+  }
+
+  useEffect(() => {
+    const result = areValuesEqual(userValues, maxValues, currentWorkout._id)
+    if (result) setIsProgressComplete(true)
+    else setIsProgressComplete(false)
+  },[value])
 
   return (
     <div className="my-progress">
@@ -74,7 +116,7 @@ export const MyProgress = ({
             <InputProgress handleChange={handleChange} progress={progress} />
           </div>
         ))}
-        {error ? <p className='my-progress__error error'>{error}</p> : ''}
+        {error ? <p className="my-progress__error error">{error}</p> : ''}
         <button
           type="submit"
           className="submit-button btn-purple"
