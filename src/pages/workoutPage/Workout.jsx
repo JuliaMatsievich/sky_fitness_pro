@@ -71,7 +71,11 @@ export const WorkoutComponent = ({ workoutId }) => {
 
   const getProcentProgress = (value, max) => {
     const procentProgress = Math.round((value * 100) / max)
-    return procentProgress
+    if (procentProgress > 100) {
+      return 100
+    } 
+    else {
+      return procentProgress}
   }
 
   return (
