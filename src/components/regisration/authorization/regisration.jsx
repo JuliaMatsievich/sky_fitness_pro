@@ -64,6 +64,8 @@ export function Registration() {
           // ..
         })
     }
+
+    
   }
 
   useEffect(() => {

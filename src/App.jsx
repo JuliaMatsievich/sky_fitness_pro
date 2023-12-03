@@ -6,10 +6,15 @@ export const UserContext = createContext(null);
 
 function App() {
   const [isUser, setIsUser] = useState(true);
-  
+
   return (
     <>
-      <UserContext.Provider value={{ isUser, setIsUser }}>
+      <UserContext.Provider
+        value={{
+          isUser,
+          setIsUser
+        }}
+      >
         <AppRoutes />
       </UserContext.Provider>
     </>

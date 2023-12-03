@@ -163,17 +163,5 @@
     justify-content: center;
 }
 
-.close-png {
-    display: block !important;
-    width: 20px;
-    cursor: pointer;
-    /* position: relative; */
-    position: absolute;
-    right: 15px;
-    top: 15px;
-}
 
-.close-png:hover {
-    background-color: gray;
-    border-radius: 3px;
-}
+

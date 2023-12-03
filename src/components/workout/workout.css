@@ -29,18 +29,18 @@
     align-items: flex-start;
     gap: 12px;
     margin-bottom: 58px;
+    width: 278px;
 }
 
 .main-tasks {
     border-radius: 26px;
     border: 1px solid #000;
-    width: 278px;
-    height: 76px;
     flex-shrink: 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: 5px 27px;
 }
 
 .main-tasks-h2 {
@@ -52,6 +52,7 @@
     line-height: 115%;
     letter-spacing: -0.05px;
     padding-bottom: 6px;
+    text-align: center;
 }
 
 .task-color {
