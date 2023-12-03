@@ -10,7 +10,7 @@ export const Cards = () => {
       {cards.map((card) => (
         <div className="card" key={card.id}>
           <Link to={`/curs/${card.id}`}>
-          <span>{card.title}</span>
+          <span className='card-span'>{card.title}</span>
           <img className="card-img" src={card.src} alt="" />
           </Link>
         </div>
