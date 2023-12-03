@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import '../authRegForm.css'
 import { Link, useNavigate } from 'react-router-dom'
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth'
 import { sendEmailVerification } from 'firebase/auth'
+import { UserContext } from '../../../App'
 
 export function Registration() {
   const push = useNavigate()
@@ -10,6 +11,8 @@ export function Registration() {
   const [inputPassword, setPassword] = useState('')
   const [inputPasswordChange, setPasswordChange] = useState('')
   const [error, setError] = useState('')
+  const {isUser, setIsUser} = useContext(UserContext)
+
 
   function newUser() {
     let email = inputLogin
@@ -40,6 +43,8 @@ export function Registration() {
           localStorage.setItem('userName', user.email)
           localStorage.setItem('userPassword', password)
           localStorage.setItem('uid', user.auth.currentUser.uid)
+          setIsUser(true)
+
           push('/')
           // ...
           sendEmailVerification(auth.currentUser).then(() => {})
@@ -48,7 +53,9 @@ export function Registration() {
           const errorCode = error.code
           const errorMessage = error.message
           if (errorCode === 'auth/invalid-email') {
-            setError('Неправильно введен email или такой пользователь не найден')
+            setError(
+              'Неправильно введен email или такой пользователь не найден',
+            )
           }
           if (errorCode === 'auth/wrong-password') {
             setError('Неправильно введен пароль')
@@ -59,18 +66,16 @@ export function Registration() {
           if (errorCode === 'auth/email-already-in-use') {
             setError('Пользователь с таким логином(email) уже существует')
           }
-          
-          console.log(errorCode + ' ' + errorMessage);
+
+          console.log(errorCode + ' ' + errorMessage)
           // ..
         })
     }
-
-    
   }
 
   useEffect(() => {
-    setError('')  
-  },[inputLogin, inputPassword,inputPasswordChange])
+    setError('')
+  }, [inputLogin, inputPassword, inputPasswordChange])
 
   return (
     <div className="main-authorization">

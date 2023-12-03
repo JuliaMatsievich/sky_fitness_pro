@@ -1,15 +1,24 @@
 import './curs.css'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { ref, child, get } from 'firebase/database'
 import { db } from '../../firebase'
+import { UserContext } from '../../App'
+import { useNavigate } from 'react-router'
 
 export const Curs = ({ cursId }) => {
   const [isLoading, setIsLoading] = useState(true)
   const [currentCurs, setCurrentCurs] = useState({})
   const [isClickSignup, setIsClickSignup] = useState(false)
+  const { isUser } = useContext(UserContext)
+  const push = useNavigate()
 
   const handleClickSignupTraining = () => {
-    setIsClickSignup(true)
+    if (isUser) {
+      console.log(isUser);
+      setIsClickSignup(true)
+    } else {
+      push('/auth')
+    }
   }
 
   const closePopup = () => {
@@ -99,14 +108,20 @@ export const Curs = ({ cursId }) => {
         {isClickSignup ? (
           <div className="signUpTrain__popup">
             <div className="signUpTrain__complete">
-                  <img
-                    src="/img/close.png"
-                    alt="close"
-                    className="close-png"
-                    onClick={closePopup}
-                  />
-              <p className='signUpTrain__popup-text'>Курс будет добавлен в ваш профиль администратором</p>
-              <img className='signUpTrain__popup-img' src="/img/hand.png" alt="progress" />
+              <img
+                src="/img/close.png"
+                alt="close"
+                className="close-png"
+                onClick={closePopup}
+              />
+              <p className="signUpTrain__popup-text">
+                Курс будет добавлен в ваш профиль администратором
+              </p>
+              <img
+                className="signUpTrain__popup-img"
+                src="/img/hand.png"
+                alt="progress"
+              />
             </div>
           </div>
         ) : null}

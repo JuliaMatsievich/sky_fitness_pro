@@ -5,9 +5,11 @@ import { UserContext } from '../../App'
 import { Link, useNavigate } from 'react-router-dom'
 
 export const Header = ({ namePage }) => {
+  const {isUser, setIsUser} = useContext(UserContext)
+
   const push = useNavigate();
   const [yourName, setYourName] = useState('');
-  const [ isUser, setIsUser ] = useState('');
+  // const [ isUser, setIsUser ] = useState('');
   const openMenuProfile = () => {
     if (isShowMenu === true) {
       setIsShowMenu(false)
@@ -18,6 +20,7 @@ export const Header = ({ namePage }) => {
   function logout() {
     localStorage.clear();
     window.location.href = '/';
+    setIsUser(false)
   }
   const [isShowMenu, setIsShowMenu] = useState(false);
   useEffect(() => {

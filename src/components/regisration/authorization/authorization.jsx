@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import '../authRegForm.css'
 import { Link, useNavigate } from 'react-router-dom'
 
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { UserContext } from '../../../App';
 
 
 export function Authorization() {
@@ -10,6 +11,7 @@ export function Authorization() {
   const [inputLogin, setLogin] = useState('');
   const [inputPassword, setPassword] = useState('');
   const [error, setError] = useState('')
+  const {isUser, setIsUser} = useContext(UserContext)
 
   function loginUser() {
     let email = inputLogin;
@@ -34,6 +36,7 @@ export function Authorization() {
     localStorage.setItem('userName', user.email);
     localStorage.setItem('userPassword', password);
     localStorage.setItem('uid', user.auth.currentUser.uid)
+    setIsUser(true)
     console.log(user);
     push('/');
     // ...

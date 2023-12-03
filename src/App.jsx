@@ -4,7 +4,7 @@ import { createContext, useState } from 'react'
 export const UserContext = createContext(null);
 
 function App() {
-  const [isUser, setIsUser] = useState(true);
+  const [isUser, setIsUser] = useState(false);
 
   return (
     <>
