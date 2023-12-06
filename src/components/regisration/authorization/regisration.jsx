@@ -46,7 +46,6 @@ export function Registration() {
           setIsUser(true)
 
           push('/')
-          // ...
           sendEmailVerification(auth.currentUser).then(() => {})
         })
         .catch((error) => {
@@ -68,7 +67,6 @@ export function Registration() {
           }
 
           console.log(errorCode + ' ' + errorMessage)
-          // ..
         })
     }
   }
