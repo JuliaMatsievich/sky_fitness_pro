@@ -8,7 +8,7 @@ export const getLoginUser = (email, password) => {
       localStorage.setItem('userName', user.email)
       localStorage.setItem('userPassword', password)
       localStorage.setItem('uid', user.auth.currentUser.uid)
-		window.location.href ='/'
+		// window.location.href ='/'
 		return user
       // 
     })
@@ -19,6 +19,8 @@ export const getLoginUser = (email, password) => {
       // if (error.code === 'auth/wrong-password') {
       //   setError('Неправильно введен пароль')
       // }
-      console.log(error.code + ' ' + error.message)
+      // console.log(error.code + ' ' + error.message)
+		return {error}
+		// return {errorCode: error.code, errorMessage: error.message}
     })
 }

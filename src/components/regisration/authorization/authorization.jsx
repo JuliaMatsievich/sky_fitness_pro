@@ -1,16 +1,38 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, {useEffect, useState } from 'react'
 import '../authRegForm.css'
 import { Link } from 'react-router-dom'
-import { UserContext } from '../../../App'
-import { getLoginUser } from '../../../api/apiAuthorization'
 import { useLoginUser } from '../../../hooks/useLoginUser'
+import { getLoginUser } from '../../../api/apiAuthorization'
 
 export const Authorization = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
 
-  const { isUser, handleLoginUser } = useLoginUser(email, password)
+  // const { isUser, handleLoginUser} = useLoginUser(email, password)
+
+  const handleLoginUser = () => {
+		// if (!email && !password) {
+		//   setError('Поля не должны быть пустыми')
+		//   return
+		// }
+		// if (!email && password) {
+		//   setError('Поле Логин(email) не должно быть пустым')
+		//   return
+		// }
+		// if (email && !password) {
+		//   setError('Поле Пароль не должно быть пустым')
+		//   return
+		// }
+	//  getLoginUser(email, password)
+  try {
+    getLoginUser(email, password)
+  }
+  catch (error) {
+    console.log('error');
+  }
+	//  setIsUser(true)
+  }
 
   useEffect(() => {
     setError('')
